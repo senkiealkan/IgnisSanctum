@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1c04d4f3d4ec948b48d8bc9729abf9, type: 3}
+  m_Name: Arena2-Asphodel
+  m_EditorClassIdentifier: Assembly-CSharp::ArenaConfig
+  arenaName: Asphodel
+  sceneName: Arena2-Asphodel
+  waves:
+  - {fileID: 11400000, guid: 57ec673f58163954e84b2db5e6189b27, type: 2}
+  - {fileID: 11400000, guid: 76dc3f7f2a2ee584383c6d4c3345b71d, type: 2}
+  - {fileID: 11400000, guid: b5280875e9c6a8b4392778bcda47407d, type: 2}
+  - {fileID: 11400000, guid: e9381a2d2a607b34c88e58b6d3877266, type: 2}
+  - {fileID: 11400000, guid: e6712fec8e0656e4d9504dd787d0868a, type: 2}
+  - {fileID: 11400000, guid: 7d3da006ad10b2744a2ac10da5188f3d, type: 2}
+  - {fileID: 11400000, guid: 26bfb00d8717ede4898a79848f71012e, type: 2}
+  - {fileID: 11400000, guid: 1ef893246a7fc6d4aa5d92c421136435, type: 2}
+  - {fileID: 11400000, guid: a0b21fe20b3794b4cabcf3c7997a834b, type: 2}
+  - {fileID: 11400000, guid: a8ebadec85c82664fb518da76129a63f, type: 2}
+  - {fileID: 11400000, guid: 4776e73f1fafe9b4d9f066b624d2da6c, type: 2}
+  - {fileID: 11400000, guid: 4f32da67b4408a44ebb2fcf9e531db99, type: 2}
+  - {fileID: 11400000, guid: 7cdf229265c2d4c4e9ed87cb12e6e2ce, type: 2}
+  - {fileID: 11400000, guid: 0b21e3f6a6cbfd541828b0e7e3a7bb3a, type: 2}
+  - {fileID: 11400000, guid: 254b16a5381391b4ba46e83411fc1666, type: 2}
+  - {fileID: 11400000, guid: cd4b4a65f6197fe4eac2c49cbc00b988, type: 2}
+  - {fileID: 11400000, guid: 33cf0f0c4d5965f4288b51c61f70e35c, type: 2}
+  - {fileID: 11400000, guid: ec460048ee72bc14e82668ec081690b4, type: 2}
+  - {fileID: 11400000, guid: 4cf7a7a93a4acb742992c69b69621654, type: 2}
+  - {fileID: 11400000, guid: eb5f11964aa3a5c439dc330e61e9262c, type: 2}
+  - {fileID: 11400000, guid: 67326b64ab593af44a938e61b34d40d1, type: 2}
+  - {fileID: 11400000, guid: 553380d7081ef8c44a9418fffb1f9219, type: 2}
+  - {fileID: 11400000, guid: d94387a21e25cce4ab39e006449e9c78, type: 2}
+  - {fileID: 11400000, guid: ecbb3a67c4d6e2749b5c198560187380, type: 2}
+  - {fileID: 11400000, guid: bb4d6a3d6e5005e45b0c67653f7a1980, type: 2}
+  - {fileID: 11400000, guid: 5d3e1e64e9c11254f8606e82f253a38e, type: 2}
+  - {fileID: 11400000, guid: 92ae569dc370e2c44ab98019c420cff1, type: 2}
+  - {fileID: 11400000, guid: 5dad3e673c046d24e8d826a19b232134, type: 2}
+  normalWaveBGM:
+  - {fileID: 8300000, guid: e48eda05c511ecf4db5b5be4a8c342cc, type: 3}
+  - {fileID: 8300000, guid: 51b058da21a4add49a99b4450ee5ad5c, type: 3}
+  - {fileID: 8300000, guid: 3991c49c443e55041a674c9d6b723faf, type: 3}
+  bossWaveBGM: {fileID: 8300000, guid: cb3d93047d916724e9b1a8cf659d24c4, type: 3}
+  bossWaveIndex: 27

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1c04d4f3d4ec948b48d8bc9729abf9, type: 3}
+  m_Name: Arena0-Tutorial
+  m_EditorClassIdentifier: Assembly-CSharp::ArenaConfig
+  arenaName: Tutorial
+  sceneName: Arena0-Tutorial
+  waves: []
+  normalWaveBGM:
+  - {fileID: 8300000, guid: f8d683e1c85bdda43afacaec2f9b13c2, type: 3}
+  bossWaveBGM: {fileID: 0}
+  bossWaveIndex: 0

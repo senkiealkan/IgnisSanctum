@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aabfa32fc961c6048a0bdc9c57b34aed, type: 3}
+  m_Name: Wave24
+  m_EditorClassIdentifier: Assembly-CSharp::WaveConfig
+  timeBetweenSpawns: 0.4
+  enemyGroups:
+  - enemyName: Female
+    enemyPrefab: {fileID: 9108064867173576769, guid: 39a943118bfa58d4c8280da667c008d6, type: 3}
+    amount: 10
+  - enemyName: Slime
+    enemyPrefab: {fileID: 8536272810475351060, guid: 02f9435756329c54d8e757950e969aab, type: 3}
+    amount: 10
+  - enemyName: Shardsoul
+    enemyPrefab: {fileID: 2638107623926005733, guid: 894db9fa196387942a316fd97bd7ef0b, type: 3}
+    amount: 3
+  - enemyName: Gob
+    enemyPrefab: {fileID: 5528345708377560280, guid: f0c0d6db790e3bf4f82e6fb9e30b6452, type: 3}
+    amount: 10
+  - enemyName: Skeleton
+    enemyPrefab: {fileID: 7965396499742380826, guid: a8d163c060954ca46aae7dc60baa4b4e, type: 3}
+    amount: 15
+  - enemyName: Slime
+    enemyPrefab: {fileID: 8536272810475351060, guid: 02f9435756329c54d8e757950e969aab, type: 3}
+    amount: 10
+  - enemyName: Fire
+    enemyPrefab: {fileID: 5465929429877390463, guid: aee9c5ee9f122d04ca2217f470add3f7, type: 3}
+    amount: 10

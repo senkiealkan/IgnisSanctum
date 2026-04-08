@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FireWorm
+  m_Controller: {fileID: 9100000, guid: 5cc7967641de7b04db0099fd451c4791, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b7f608eabcd043f45899d1d73086d347, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: addb7e394ae088046a10e4bc5477d050, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 95f2e17fb1de65e4485c07028aa2ca2c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2482fd969c0454240808f1f88d1641f1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 67370a18480589e4883cb51d127254dc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 22607696ee76cfc458b101245bb5d459, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 390aca6eccdce3f4590266b22249c5a9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fabe4c67989ba5640a457e2b67479d87, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1d4085f887e60ab40aac4aa25137f638, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d0895a1a931c3004a9a98868fed92fae, type: 2}

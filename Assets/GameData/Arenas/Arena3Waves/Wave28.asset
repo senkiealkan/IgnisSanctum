@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aabfa32fc961c6048a0bdc9c57b34aed, type: 3}
+  m_Name: Wave28
+  m_EditorClassIdentifier: Assembly-CSharp::WaveConfig
+  timeBetweenSpawns: 0.2
+  enemyGroups:
+  - enemyName: Nec
+    enemyPrefab: {fileID: 4687602197178712125, guid: 57ce0b16a7e1f564ca3cd5c13f9bdaa5, type: 3}
+    amount: 3
+  - enemyName: Night
+    enemyPrefab: {fileID: 3302378695851938879, guid: 775279ec828b47748b961aae5d7206fd, type: 3}
+    amount: 3
+  - enemyName: Worm
+    enemyPrefab: {fileID: 4779846927721369495, guid: 864a88ff9afd78343807a86bd547af58, type: 3}
+    amount: 3
+  - enemyName: Mush
+    enemyPrefab: {fileID: 6299808262067336236, guid: 87d3957252760f342a4e0ca96388866e, type: 3}
+    amount: 25
+  - enemyName: Shard
+    enemyPrefab: {fileID: 6681329198650487353, guid: ec134c925ddffd4448c375dbb99857c3, type: 3}
+    amount: 6
+  - enemyName: Wizard
+    enemyPrefab: {fileID: 6676520081323201326, guid: 242cd809c6df86a4dbb09c30907e210f, type: 3}
+    amount: 6

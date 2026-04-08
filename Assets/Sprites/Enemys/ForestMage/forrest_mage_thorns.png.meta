@@ -1,0 +1,428 @@
+fileFormatVersion: 2
+guid: 6ea8913fa8734d84c8daad6225619117
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6141961743348006765
+    second: forrest_mage_thorns_0
+  - first:
+      213: -533810831574393631
+    second: forrest_mage_thorns_1
+  - first:
+      213: -401504441139060572
+    second: forrest_mage_thorns_2
+  - first:
+      213: 1459583831018496336
+    second: forrest_mage_thorns_3
+  - first:
+      213: 692871490589128873
+    second: forrest_mage_thorns_4
+  - first:
+      213: 1292163266161684068
+    second: forrest_mage_thorns_5
+  - first:
+      213: 1112254028940752002
+    second: forrest_mage_thorns_6
+  - first:
+      213: 8902640554515113548
+    second: forrest_mage_thorns_7
+  - first:
+      213: 2700206465769922249
+    second: forrest_mage_thorns_8
+  - first:
+      213: -8512841369349741945
+    second: forrest_mage_thorns_9
+  - first:
+      213: 5902037452081886316
+    second: forrest_mage_thorns_10
+  - first:
+      213: -94759749920360606
+    second: forrest_mage_thorns_11
+  - first:
+      213: -4775118507382529027
+    second: forrest_mage_thorns_12
+  - first:
+      213: -3059911080267483719
+    second: forrest_mage_thorns_13
+  - first:
+      213: 7658085801662728790
+    second: forrest_mage_thorns_14
+  - first:
+      213: -5398324642792585444
+    second: forrest_mage_thorns_15
+  - first:
+      213: 5063315855454682258
+    second: forrest_mage_thorns_16
+  - first:
+      213: 2811846577234653110
+    second: forrest_mage_thorns_17
+  - first:
+      213: 6162600794723340596
+    second: forrest_mage_thorns_18
+  - first:
+      213: -1173029080569021944
+    second: forrest_mage_thorns_19
+  - first:
+      213: 5220355219804589127
+    second: forrest_mage_thorns_20
+  - first:
+      213: -6499655123002376706
+    second: forrest_mage_thorns_21
+  - first:
+      213: -653652246582120131
+    second: forrest_mage_thorns_22
+  - first:
+      213: 2754589182635165668
+    second: forrest_mage_thorns_23
+  - first:
+      213: 1933440919288435392
+    second: forrest_mage_thorns_24
+  - first:
+      213: -3618204920425815799
+    second: forrest_mage_thorns_25
+  - first:
+      213: 8674270240018856188
+    second: forrest_mage_thorns_26
+  - first:
+      213: 400373121963165254
+    second: forrest_mage_thorns_27
+  - first:
+      213: 5200175719225433388
+    second: forrest_mage_thorns_28
+  - first:
+      213: -4961506548955450137
+    second: forrest_mage_thorns_29
+  - first:
+      213: 1669251257752017908
+    second: forrest_mage_thorns_30
+  - first:
+      213: 4811203954908764115
+    second: forrest_mage_thorns_31
+  - first:
+      213: -2773201943711759570
+    second: forrest_mage_thorns_32
+  - first:
+      213: -6676541034019815668
+    second: forrest_mage_thorns_33
+  - first:
+      213: -5773220561834170653
+    second: forrest_mage_thorns_34
+  - first:
+      213: 5998301064823809651
+    second: forrest_mage_thorns_35
+  - first:
+      213: 7263237864160947073
+    second: forrest_mage_thorns_36
+  - first:
+      213: -1982373139287749520
+    second: forrest_mage_thorns_37
+  - first:
+      213: -1447477673286374453
+    second: forrest_mage_thorns_38
+  - first:
+      213: -2526877752495301972
+    second: forrest_mage_thorns_39
+  - first:
+      213: -4044081329386216781
+    second: forrest_mage_thorns_40
+  - first:
+      213: 1104663655869166114
+    second: forrest_mage_thorns_41
+  - first:
+      213: -7973847577430429313
+    second: forrest_mage_thorns_42
+  - first:
+      213: 654581393231765383
+    second: forrest_mage_thorns_43
+  - first:
+      213: -4452961464489053615
+    second: forrest_mage_thorns_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: forrest_mage_thorns_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 123
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39004bff55e53caa0800000000000000
+      internalID: -6141961743348006765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forrest_mage_thorns_1
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 0
+        width: 123
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ec90ce70e58798f0800000000000000
+      internalID: -533810831574393631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forrest_mage_thorns_2
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 0
+        width: 123
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a02a2a86d19d6af0800000000000000
+      internalID: -401504441139060572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forrest_mage_thorns_3
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 0
+        width: 123
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 051e2c7d2cb714410800000000000000
+      internalID: 1459583831018496336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forrest_mage_thorns_4
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 0
+        width: 123
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a87f8f13f29d9900800000000000000
+      internalID: 692871490589128873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forrest_mage_thorns_5
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 0
+        width: 123
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46e2067f4afaee110800000000000000
+      internalID: 1292163266161684068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forrest_mage_thorns_6
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 0
+        width: 123
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 284b20775258f6f00800000000000000
+      internalID: 1112254028940752002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5976c574f31c73542a608c7e299071e3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":123.0,"y":62.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      forrest_mage_thorns_0: -6141961743348006765
+      forrest_mage_thorns_1: -533810831574393631
+      forrest_mage_thorns_2: -401504441139060572
+      forrest_mage_thorns_3: 1459583831018496336
+      forrest_mage_thorns_4: 692871490589128873
+      forrest_mage_thorns_5: 1292163266161684068
+      forrest_mage_thorns_6: 1112254028940752002
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

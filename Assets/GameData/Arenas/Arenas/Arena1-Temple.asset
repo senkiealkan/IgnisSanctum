@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1c04d4f3d4ec948b48d8bc9729abf9, type: 3}
+  m_Name: Arena1-Temple
+  m_EditorClassIdentifier: Assembly-CSharp::ArenaConfig
+  arenaName: Temple
+  sceneName: Arena1-Temple
+  waves:
+  - {fileID: 11400000, guid: bce745d149a80bb4fa9e0898e0983e30, type: 2}
+  - {fileID: 11400000, guid: d4f51043c5914984983de9c70d731f53, type: 2}
+  - {fileID: 11400000, guid: 4afff9921fcf3cf4fa578bf9167b2fe6, type: 2}
+  - {fileID: 11400000, guid: 3ac0516b236b5e049bc7821511fa1e56, type: 2}
+  - {fileID: 11400000, guid: ddbf0f9adb70a0244acb830e71ff5003, type: 2}
+  - {fileID: 11400000, guid: 84a30542d5145444cb2a3829c5cfe23d, type: 2}
+  - {fileID: 11400000, guid: a14d8708e693cf145aefa7b90324cf45, type: 2}
+  - {fileID: 11400000, guid: b8731a75c9f5a334989f51de2f876cef, type: 2}
+  - {fileID: 11400000, guid: e8ddac18382edb64f9c171ce6ce660d5, type: 2}
+  - {fileID: 11400000, guid: 3cab7b5dfc1a16b4cb3e60968e150764, type: 2}
+  - {fileID: 11400000, guid: c14cc0df416423547a56ad73253a19de, type: 2}
+  - {fileID: 11400000, guid: 28254c93538d7664da2799c39b1a9cb7, type: 2}
+  - {fileID: 11400000, guid: 78f35b09d3b82be469ed9ff6a3f11e2f, type: 2}
+  - {fileID: 11400000, guid: 189f63539662d7d439b2cee7b29d14c9, type: 2}
+  - {fileID: 11400000, guid: bde509747fad28a46a077d4de76ba14c, type: 2}
+  - {fileID: 11400000, guid: ba66b06e0ff27784abe5678b627dbe22, type: 2}
+  - {fileID: 11400000, guid: f040b35a6b787f241b59ac5b375b73ab, type: 2}
+  - {fileID: 11400000, guid: ff1825d9f85e3494cbc0aaf4863c8515, type: 2}
+  - {fileID: 11400000, guid: bc7c86ee805613248a357ae770209e5a, type: 2}
+  - {fileID: 11400000, guid: 428c151f23e8d8a499856b821a10a4a4, type: 2}
+  normalWaveBGM:
+  - {fileID: 8300000, guid: 233a054e41ae9d5488aca7ce51eb13ab, type: 3}
+  - {fileID: 8300000, guid: b22e663a52dec65478e113e7bb2c96c9, type: 3}
+  bossWaveBGM: {fileID: 8300000, guid: 516207b190a26e143915647aec6a1fdc, type: 3}
+  bossWaveIndex: 19
