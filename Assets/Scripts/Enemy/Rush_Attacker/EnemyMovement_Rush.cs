@@ -4,8 +4,6 @@ using UnityEngine.Audio;
 public class EnemyMovement_Rush : MonoBehaviour
 {
     private Transform playerTarget;
-    //public AudioClip movingSound;
-    //private AudioSource audioSource;
     public float moveSpeed = 3f;
     private bool isMoving = false;
     public SpriteRenderer spriteRenderer;
@@ -15,7 +13,6 @@ public class EnemyMovement_Rush : MonoBehaviour
     public float damageToPlayer = 10f;
     private Rigidbody2D rb;
     private Animator animator;
-    //public bool canAttack;
     public void SetTarget(Transform target)
     {
         playerTarget = target;
@@ -31,24 +28,15 @@ public class EnemyMovement_Rush : MonoBehaviour
         enemyHealth = gameObject.GetComponent<EnemyHealth>();
         playerTarget = playerObject.transform;
         animator = GetComponent<Animator>();
-        //audioSource = GetComponent<AudioSource>();
-        //audioSource.clip = movingSound;
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
-        //audioSource.loop = true;
-
-        //if (audioSource != null && movingSound != null)
-        //{
-        //    audioSource.Play();
-        //}
+    
     }
     void Update()
     {
 
-        // [FIX] Nếu Enemy chết hoặc chưa tìm thấy Player thì không làm gì cả
         if (enemyHealth.isDead || playerTarget == null)
         {
-            // Thử tìm lại Player nếu chưa có (phòng trường hợp Player spawn muộn)
             if (playerTarget == null)
             {
                 GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -67,8 +55,7 @@ public class EnemyMovement_Rush : MonoBehaviour
 
         if (enemyHealth != null && enemyHealth.knockbackTimer <= 0)
         {
-            isMoving = true;
-            //transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
+            isMoving = true;     
             rb.linearVelocity = direction * moveSpeed;
         }
         animator.SetBool("isMoving", isMoving);

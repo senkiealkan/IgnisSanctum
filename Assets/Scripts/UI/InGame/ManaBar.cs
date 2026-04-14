@@ -1,15 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections; // Cần thêm cái này để dùng Coroutine
+using System.Collections; 
 
 public class ManaBar : MonoBehaviour
 {
     public Slider manaSlider;
     public TextMeshProUGUI manaText;
 
-    // [ADD] Phần biến cho Scaling
-    public RectTransform rootRectTransform; // Kéo object cha của Slider vào đây
+    public RectTransform rootRectTransform; 
 
     [Header("Scaling Settings")]
     public float baseMaxMana = 100f; // Mana cơ bản ban đầu
@@ -26,16 +25,13 @@ public class ManaBar : MonoBehaviour
     }
     private void Start()
     {
-        // Dùng PlayerHealth.Instance làm neo để tìm PlayerMana (vì chúng nằm cùng 1 GameObject)
+        // Dùng PlayerHealth.Instance làm neo để tìm PlayerMana 
         if (PlayerHealth.Instance != null)
         {
             PlayerMana pMana = PlayerHealth.Instance.GetComponent<PlayerMana>();
             if (pMana != null)
             {
-                // 1. Gán chính mình vào biến manaBar của Player
-                //pMana.manaBar = this;
-
-                // 2. Cập nhật hiển thị ngay lập tức
+          
                 SetMaxMana(pMana.stats.MaxMana); // Lấy Max từ Stats
                 SetMana(pMana.currentMana);      // Lấy Current từ PlayerMana
             }
@@ -47,7 +43,7 @@ public class ManaBar : MonoBehaviour
         {
             manaSlider.maxValue = maxMana;
 
-            // [ADD] Gọi hàm Scale khi Max Mana thay đổi
+            // Gọi hàm Scale khi Max Mana thay đổi
             UpdateScale(maxMana);
 
             UpdateText(manaSlider.value, maxMana);
@@ -71,7 +67,7 @@ public class ManaBar : MonoBehaviour
         }
     }
 
-    // [ADD] Logic Scale tương tự HealthBar
+    // Logic Scale tương tự HealthBar
     private void UpdateScale(float newMaxMana)
     {
         if (rootRectTransform == null) return;

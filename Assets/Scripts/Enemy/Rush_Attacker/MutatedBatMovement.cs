@@ -4,8 +4,6 @@ using UnityEngine.Audio;
 public class MutatedBatMovement : MonoBehaviour
 {
     private Transform playerTarget;
-    //public AudioClip movingSound;
-    //private AudioSource audioSource;
     public float moveSpeed = 3f;
     private bool isMoving = false;
     public SpriteRenderer spriteRenderer;
@@ -15,7 +13,6 @@ public class MutatedBatMovement : MonoBehaviour
     public float damageToPlayer = 10f;
     private Rigidbody2D rb;
     private Animator animator;
-    //public bool canAttack;
     public void SetTarget(Transform target)
     {
         playerTarget = target;
@@ -38,7 +35,7 @@ public class MutatedBatMovement : MonoBehaviour
     void Update()
     {
 
-        // [FIX] Nếu Enemy chết hoặc chưa tìm thấy Player thì không làm gì cả
+        //Nếu Enemy chết hoặc chưa tìm thấy Player thì không làm gì cả
         if (enemyHealth.isDead || playerTarget == null)
         {
             // Thử tìm lại Player nếu chưa có (phòng trường hợp Player spawn muộn)
@@ -48,7 +45,7 @@ public class MutatedBatMovement : MonoBehaviour
                 if (playerObject != null) playerTarget = playerObject.transform;
             }
 
-            if (collider != null) collider.enabled = false; // Chỉ tắt collider nếu chết
+            if (collider != null) collider.enabled = false;
             return;
         }
 
@@ -61,7 +58,6 @@ public class MutatedBatMovement : MonoBehaviour
         if (enemyHealth != null && enemyHealth.knockbackTimer <= 0)
         {
             isMoving = true;
-            //transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
             rb.linearVelocity = direction * moveSpeed;
         }
         animator.SetBool("isMoving", isMoving);

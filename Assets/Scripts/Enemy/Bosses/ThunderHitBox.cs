@@ -8,8 +8,8 @@ public class ThunderHitbox : MonoBehaviour
     public int damageToPlayer = 20;
     private AudioSource audioSource;
     public AudioClip thunder;
-    public Collider2D hitbox;
-    // Cờ để đảm bảo chỉ gây sát thương 1 lần mỗi lần HitBox được kích hoạt
+    public Collider2D hitbox;     // Cờ để đảm bảo chỉ gây sát thương 1 lần mỗi lần HitBox được kích hoạt
+
 
     private void Start()
     {
@@ -17,10 +17,8 @@ public class ThunderHitbox : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Hàm này sẽ được gọi khi HitBox va chạm với Player (vì là Trigger)
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Chỉ xử lý va chạm nếu HitBox đang active
         if (gameObject.activeInHierarchy && other.CompareTag("Player"))
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
@@ -50,6 +48,5 @@ public class ThunderHitbox : MonoBehaviour
         hitbox.enabled = false;
     }
 
-    // Thêm hàm phát âm thanh cho Vung vũ khí
 
 }

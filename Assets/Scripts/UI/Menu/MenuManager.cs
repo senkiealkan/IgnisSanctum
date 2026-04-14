@@ -56,8 +56,7 @@ public class MenuManager : MonoBehaviour
                     trigger.enabled = false;
                 }
 
-                // 3. (Tùy chọn) Làm mờ nút đi cho người chơi hiểu là bị khóa
-                // Cách nhanh nhất là chỉnh alpha của CanvasGroup (nếu có) hoặc Image
+                // 3. Làm mờ nút đi cho người chơi hiểu là bị khóa
                 CanvasGroup cg = continueButton.GetComponent<CanvasGroup>();
                 if (cg != null) cg.alpha = 0.5f; // Mờ đi 50%
             }
@@ -72,11 +71,10 @@ public class MenuManager : MonoBehaviour
                 if (cv != null) cv.enabled = false;
             }
 
-            // Tắt luôn cả Player  nếu nó lỡ hiện ở Menu
+            // Tắt luôn cả Player
             Transform player = essentials.transform.Find("Cael");
             if (player != null) player.gameObject.SetActive(false);
         }
-        // -----------------------------
     }
     public void NewGame()
     {
@@ -133,7 +131,6 @@ public class MenuManager : MonoBehaviour
             // === TRƯỜNG HỢP 1: CÓ SAVE DỞ ===
             string savedScene = PlayerPrefs.GetString("Run_SceneName");
 
-            // Báo cho EssentialsManager biết là cần Load dữ liệu
             if (EssentialsManager.Instance != null)
             {
                 EssentialsManager.Instance.isLoadingSavedGame = true;
@@ -146,8 +143,6 @@ public class MenuManager : MonoBehaviour
             // === TRƯỜNG HỢP 2: KHÔNG CÓ SAVE (Do vừa GiveUp hoặc vừa Win) ===
             Debug.Log("Không có file save dở dang -> Bắt đầu Run mới (Giữ nguyên Meta)");
 
-            // [QUAN TRỌNG] Ở đây KHÔNG GỌI MetaProgressionManager.ResetData()
-            // Chỉ bắt đầu run mới thôi
 
             // Kiểm tra xem đã học xong Tutorial chưa để chọn map
             if (PlayerPrefs.GetInt("TutorialCompleted", 0) == 1)
@@ -161,11 +156,10 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    // --- HÀM PHỤ TRỢ (Dùng chung cho cả 2 nút) ---
-    // Hàm này chỉ lo việc reset máu me, inventory của nhân vật và chuyển cảnh
+    // --- HÀM PHỤ TRỢ  ---
     private void StartRunLogic(string sceneName)
     {
-        // 1. Reset tiến độ đi màn (Về màn 1)
+        // 1. Reset tiến độ đi màn 
         if (GameFlowManager.Instance != null)
         {
             GameFlowManager.Instance.ResetProgression();

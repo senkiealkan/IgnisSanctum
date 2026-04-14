@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// Tạo Menu trong Unity Editor để dễ dàng tạo Card mới
 [CreateAssetMenu(fileName = "NewUpgradeCard", menuName = "Game/In-Run/Upgrade Card")]
 public class UpgradeCardConfig : ScriptableObject
 {
@@ -10,7 +9,6 @@ public class UpgradeCardConfig : ScriptableObject
     public UpgradeType type;
     public float value;
 }
-// Enum cho các loại nâng cấp 
 public enum UpgradeType
 {
     MaxHealth, //Tăng máu tối đa

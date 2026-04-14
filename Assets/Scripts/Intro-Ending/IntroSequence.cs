@@ -7,7 +7,7 @@ public class IntroSequence : MonoBehaviour
 {
     [Header("UI Settings")]
     public TextMeshProUGUI introText;
-    public CanvasGroup transitionOverlay; // Kéo cái Panel Trắng/Cam vào đây
+    public CanvasGroup transitionOverlay; 
     public string nextSceneName = "Arena0-Tutorial";
 
     [Header("Timing Settings")]
@@ -54,15 +54,13 @@ public class IntroSequence : MonoBehaviour
             yield return new WaitForSeconds(interval);
         }
 
-        // --- HIỆU ỨNG CHUYỂN SCENE (BÙNG SÁNG) ---
+        // --- HIỆU ỨNG CHUYỂN SCENE ---
         if (transitionOverlay != null)
         {
             // Bật màn hình trắng dần lên (0 -> 1)
             yield return StartCoroutine(FadeCanvasGroup(transitionOverlay, 0f, 1f, sceneTransitionTime));
         }
 
-        // Bật lại Gameplay (để qua kia có cái mà dùng)
-        //ToggleGameplay(true);
         SceneManager.LoadScene(nextSceneName);
     }
 

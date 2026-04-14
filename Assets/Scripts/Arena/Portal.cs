@@ -9,7 +9,6 @@ public class Portal : MonoBehaviour
         if (other.CompareTag("Player") && !activated)
         {
             activated = true;
-            Debug.Log("Teleporting...");
 
             if (GameFlowManager.Instance != null)
             {

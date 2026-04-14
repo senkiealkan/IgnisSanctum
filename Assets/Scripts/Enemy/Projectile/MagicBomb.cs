@@ -58,7 +58,7 @@ public class MagicBomb : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // Vẽ vòng tròn đỏ để debug bán kính nổ
+        // Debug bán kính nổ
         Gizmos.color = new Color(1, 0, 0, 0.4f);
         Gizmos.DrawSphere(transform.position, explosionRadius);
     }

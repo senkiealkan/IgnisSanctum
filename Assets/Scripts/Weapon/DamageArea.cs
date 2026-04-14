@@ -1,15 +1,11 @@
-using System.Collections;
 using Unity.Cinemachine;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using UnityEngine.Audio;
-
 
 public class DamageArea : MonoBehaviour
 {
     public PlayerStats stats;
-    public float damage; // sát thương mỗi đòn chém
-    public string targetTag = "Enemy"; // mục tiêu có tag Enemy
+    public float damage;
+    public string targetTag = "Enemy"; 
     public AudioSource playerAudioSource;
     public AudioClip slash;
     private bool hasPlayedSlash = false;
@@ -35,17 +31,16 @@ public class DamageArea : MonoBehaviour
         animator = GetComponent<Animator>();
         playerAudioSource = GetComponent<AudioSource>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
-        // [ADD] Tìm stats nếu chưa gán (đề phòng)
         if (stats == null && playerHealth != null)
         {
             stats = playerHealth.GetComponent<PlayerStats>();
         }
 
-        // [CHANGE] Lấy damage ban đầu
+        // Lấy damage ban đầu
         if (stats != null)
         {
             damage = stats.TotalDamage;
-            // [ADD] Đăng ký sự kiện
+            // Đăng ký sự kiện
             stats.OnStatsChanged += UpdateDamageStats;
         }
     }
@@ -56,7 +51,7 @@ public class DamageArea : MonoBehaviour
         } 
         
     }
-    // [ADD] Hủy đăng ký
+    // Hủy đăng ký
     private void OnDestroy()
     {
         if (stats != null)
@@ -65,7 +60,7 @@ public class DamageArea : MonoBehaviour
         }
     }
 
-    // [ADD] Cập nhật damage
+    // Cập nhật damage
     private void UpdateDamageStats()
     {
         damage = stats.TotalDamage;
@@ -85,7 +80,7 @@ public class DamageArea : MonoBehaviour
             if (!hasPlayedSlash && playerAudioSource != null && slash != null)
             {
                 playerAudioSource.PlayOneShot(slash);
-                hasPlayedSlash = true; // Đặt cờ thành true sau khi phát
+                hasPlayedSlash = true; 
             }
             EnemyHealth enemy = other.GetComponent<EnemyHealth>();
             if (enemy != null)
@@ -97,7 +92,6 @@ public class DamageArea : MonoBehaviour
                 if (isCritical)
                 {
                     finalDamage *= 3f; 
-                    Debug.Log("CRITICAL HIT!");
                 }
                 // 1. Gây sát thương
                 enemy.TakeDamage(finalDamage, isCritical);

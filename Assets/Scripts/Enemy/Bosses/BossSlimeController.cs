@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(EnemyHealth))]
 public class BossSlimeController : MonoBehaviour
 {
     public enum BossState { Idle, Walk, Jump, SpinRush, SleepSummon, Dead }
@@ -22,8 +21,8 @@ public class BossSlimeController : MonoBehaviour
     public float walkDuration = 3f;
     public float spinPrepareTime = 0.5f;
     public float spinRushDuration = 1.5f;
-    public float jumpPrepareTime = 0.5f; // Thời gian gồng nhảy
-    public float jumpDuration = 1.0f;    // Thời gian bay
+    public float jumpPrepareTime = 0.5f; 
+    public float jumpDuration = 1.0f;    
 
     [Header("Summon Settings")]
     public GameObject minionPrefab;
@@ -53,7 +52,6 @@ public class BossSlimeController : MonoBehaviour
 
     void Start()
     {
-        // Cache references
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null) playerTarget = playerObject.transform;
 
@@ -78,7 +76,6 @@ public class BossSlimeController : MonoBehaviour
     {
         if (currentState == BossState.Dead) return;
         FlipSprite(playerTarget.position - transform.position);
-        // xử lý quay mặt (flip) liên tục nếu không phải đang rush hoặc ngủ
         if (currentState != BossState.SleepSummon && playerTarget != null)
         {
             FlipSprite(playerTarget.position - transform.position);
@@ -95,7 +92,7 @@ public class BossSlimeController : MonoBehaviour
         animator.SetBool("isSpining", false);
         animator.SetBool("isSleeping", false);
         animator.SetBool("isJumping", false);
-        rb.linearVelocity = Vector2.zero; // Dừng di chuyển ngay lập tức
+        rb.linearVelocity = Vector2.zero; 
 
         lastState = currentState;
         currentState = newState;
@@ -126,7 +123,7 @@ public class BossSlimeController : MonoBehaviour
     // --- LOGIC CHỌN SKILL (BRAIN) ---
     private IEnumerator IdleRoutine()
     {
-        // Thời gian nghỉ giữa các chiêu: Ngắn hơn nếu đang cáu (Enraged)
+        // Thời gian nghỉ giữa các chiêu: Ngắn hơn nếu đang cáu
         bool isEnraged = IsEnraged();
         float waitTime = isEnraged ? 0.5f : 1.0f;
         yield return new WaitForSeconds(waitTime);
@@ -176,7 +173,6 @@ public class BossSlimeController : MonoBehaviour
 
         while (timer < walkDuration && playerTarget != null)
         {
-            // Kiểm tra Knockback/Stun (nếu có logic stun thì chèn break vào đây)
 
             // Di chuyển
             Vector2 dir = (playerTarget.position - transform.position).normalized;
@@ -192,7 +188,7 @@ public class BossSlimeController : MonoBehaviour
     private IEnumerator JumpRoutine()
     {
         // Giai đoạn 1: Chuẩn bị nhảy
-        animator.SetBool("isJumping", true); // Trigger animation nhảy lên
+        animator.SetBool("isJumping", true); 
         yield return new WaitForSeconds(jumpPrepareTime);
 
         // Giai đoạn 2: Bay tới Player (Lấy vị trí lúc bắt đầu nhảy)
@@ -202,8 +198,6 @@ public class BossSlimeController : MonoBehaviour
 
         while (timer < jumpDuration)
         {
-            // Di chuyển Boss tới vị trí mục tiêu (Lerp hoặc MoveTowards)
-            // Ở đây dùng Velocity để giữ physics
             Vector2 dir = (targetPos - (Vector2)transform.position).normalized;
             rb.linearVelocity = dir * jumpSpeed;
 
@@ -211,12 +205,10 @@ public class BossSlimeController : MonoBehaviour
             yield return null;
         }
 
-        // Giai đoạn 3: Đáp đất (Spawn puddle xử lý ở Animation Event hoặc tại đây)
+        // Giai đoạn 3: Đáp đất
         rb.linearVelocity = Vector2.zero;
-        // Nếu Animation của bạn có event gọi SpawnPuddle thì để nó tự gọi
-        // Nếu không thì gọi: SpawnPuddle();
 
-        yield return new WaitForSeconds(0.2f); // Delay nhỏ khi đáp đất
+        yield return new WaitForSeconds(0.2f); 
         ChangeState(BossState.Idle);
     }
 
@@ -249,17 +241,17 @@ public class BossSlimeController : MonoBehaviour
         // Spawn đủ số lượng cho đến khi đạt max
         CleanUpMinions();
         int amountToSpawn = maxMinions - activeMinions.Count;
-        // Giới hạn mỗi lần ngủ chỉ gọi tối đa 2-3 con thôi để tránh lag
+        // Giới hạn mỗi lần ngủ chỉ gọi tối đa 2-3 con 
         amountToSpawn = Mathf.Min(amountToSpawn, 3);
 
         for (int i = 0; i < amountToSpawn; i++)
         {
-            // [FIX] Tìm vị trí hợp lệ thay vì random bừa
+            //  Tìm vị trí hợp lệ thay vì random bừa
             Vector2? spawnPos = GetValidSummonPosition();
 
             if (spawnPos.HasValue)
             {
-                // Spawn hiệu ứng khói/bụi nếu có (Optional)
+                // Spawn hiệu ứng khói
                 Instantiate(spawnEffect, spawnPos.Value, Quaternion.identity);
 
                 GameObject minion = Instantiate(minionPrefab, spawnPos.Value, Quaternion.identity);
@@ -286,14 +278,14 @@ public class BossSlimeController : MonoBehaviour
             // Dùng OverlapCircle để quét thử 1 vòng tròn to bằng con Minion
             Collider2D hit = Physics2D.OverlapCircle(candidatePos, minionColliderRadius, obstacleLayer);
 
-            // Nếu hit == null nghĩa là không va vào Tường/Obstacle -> Vị trí ngon
+            // Nếu hit == null nghĩa là không va vào Tường/Obstacle 
             if (hit == null)
             {
                 return candidatePos;
             }
         }
 
-        // Nếu thử 10 lần mà vẫn kẹt (do boss đứng quá sát góc tường) -> Trả về null (Không spawn con này)
+        // Nếu thử 10 lần mà vẫn kẹt-> Trả về null (Không spawn con này)
         return null;
     }
 
@@ -305,7 +297,7 @@ public class BossSlimeController : MonoBehaviour
 
 // --- HELPER METHODS ---
 
-private bool IsEnraged()
+    private bool IsEnraged()
     {
         // Kiểm tra % máu
         return (enemyHealth.currentHealth / enemyHealth.maxHealth) <= enrageThreshold;
@@ -340,8 +332,6 @@ private bool IsEnraged()
             }
         }
         activeMinions.Clear();
-
-        // Logic animation chết nằm ở script EnemyHealth hoặc animator
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
     }

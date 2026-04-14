@@ -18,12 +18,12 @@ public class PlayerMagic : MonoBehaviour
 
     [Header("Skill 2: Fire Tornado (Key 1)")]
     public GameObject tornadoPrefab;
-    public float tornadoCooldown = 3f; // Lâu hơn
+    public float tornadoCooldown = 3f; 
     public float tornadoTimer = 0f;
 
     [Header("Skill 3: Explosion (Key 2)")]
     public GameObject explosionPrefab;
-    public float explosionCooldown = 5f; // Lâu nhất
+    public float explosionCooldown = 5f; 
     public float explosionTimer = 0f;
 
     private void Start()
@@ -54,7 +54,7 @@ public class PlayerMagic : MonoBehaviour
         {
             if (fireballTimer <= 0 && playerMana.TryUseMana(stats.FireballCost))
             {
-                CastProjectile(fireballPrefab, stats.FireballDamage, 15f, "CastSpell"); // Speed 10 (Nhanh)
+                CastProjectile(fireballPrefab, stats.FireballDamage, 15f, "CastSpell"); // Speed 10 
                 fireballTimer = fireballCooldown * stats.CooldownMultiplier;
             }
         }
@@ -96,7 +96,7 @@ public class PlayerMagic : MonoBehaviour
         FireballProjectile script = projObj.GetComponent<FireballProjectile>();
         if (script != null)
         {
-            // 1. TÍNH CRIT NGAY TẠI ĐÂY
+            // 1. TÍNH CRIT 
             // Lấy chỉ số Crit từ stats (đã có sẵn trong PlayerMagic)
             float critChance = (stats != null) ? stats.CriticalChance : 0f;
             bool isCrit = UnityEngine.Random.value < critChance;
@@ -109,8 +109,8 @@ public class PlayerMagic : MonoBehaviour
             }
 
             // 3. TRUYỀN DỮ LIỆU VÀO VIÊN ĐẠN
-            script.damage = finalDamage;      // Gán damage đã nhân
-            script.isCritical = isCrit;       // Gán cờ Crit để đạn biết
+            script.damage = finalDamage;     
+            script.isCritical = isCrit;      
 
             script.xpManager = xpManager;
             script.speed = speedOverride;
@@ -124,7 +124,7 @@ public class PlayerMagic : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 direction = (mousePos - firePoint.position).normalized;
 
-        // 2. Sinh ra Tornado với góc xoay MẶC ĐỊNH (Quaternion.identity)
+        // 2. Sinh ra Tornado 
         // Để sprite luôn đứng thẳng
         GameObject tornadoObj = Instantiate(tornadoPrefab, firePoint.position, Quaternion.identity);
 
@@ -132,11 +132,9 @@ public class PlayerMagic : MonoBehaviour
 
         if (script != null)
         {
-            // Tính toán
             bool isCrit = UnityEngine.Random.value < stats.CriticalChance;
             float finalDamage = stats.TornadoDamage * (isCrit ? 3f : 1f);
 
-            // Gán
             script.damage = finalDamage;
             script.isCritical = isCrit; 
 
@@ -144,10 +142,9 @@ public class PlayerMagic : MonoBehaviour
             script.flyDirection = direction;
         }
     }
-    // Hàm riêng cho vụ nổ tại vị trí chuột
+    // Nổ tại vị trí chuột
     private void CastExplosionAtMouse()
     {
-        if (playerAnimator != null) playerAnimator.SetTrigger("CastSpell"); // Hoặc animation giơ tay lên trời
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         mousePos.z = 0; // Đảm bảo z = 0 cho game 2D

@@ -5,13 +5,11 @@ public class MusicFade : MonoBehaviour
 {
     public AudioSource musicSource;
 
-    // Tự động tìm AudioSource nếu quên kéo thả
     void Awake()
     {
         if (musicSource == null) musicSource = GetComponent<AudioSource>();
     }
 
-    // Hàm này để gọi từ script khác (trả về Coroutine để script kia biết mà đợi)
     public IEnumerator FadeOutMusic(float duration)
     {
         if (musicSource == null) yield break;
@@ -28,10 +26,10 @@ public class MusicFade : MonoBehaviour
         }
 
         musicSource.volume = 0f;
-        musicSource.Stop(); // Tắt hẳn cho nhẹ nợ
+        musicSource.Stop(); 
     }
 
-    // Hàm Fade In (nếu cần khi vào Scene mới)
+    // Hàm Fade In 
     public IEnumerator FadeInMusic(float duration, float targetVolume = 1f)
     {
         if (musicSource == null) yield break;

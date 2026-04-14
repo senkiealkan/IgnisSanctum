@@ -38,7 +38,7 @@ public class XPManager : MonoBehaviour
     {
         currentLevel++;
 
-        // 1. Reset XP, tính toán XP cần thiết cho cấp tiếp theo (ví dụ: tăng 20% mỗi cấp)
+        // 1. Reset XP, tính toán XP cần thiết cho cấp tiếp theo
         currentXP -= requiredXP;
         requiredXP *= 1.08f;
 
@@ -50,11 +50,9 @@ public class XPManager : MonoBehaviour
 
     private void UpdateXPBar()
     {
-        // Tính tỷ lệ phần trăm (0 đến 1)
         float xpRatio = currentXP / requiredXP;
 
         xpBar.value = xpRatio;
-        // Hiển thị Text
         if (xpText != null)
         {
             xpText.text = $"Lv {currentLevel} XP: {Mathf.Ceil(currentXP)} / {Mathf.Ceil(requiredXP)}";
@@ -91,10 +89,8 @@ public class XPManager : MonoBehaviour
         }
     }
 
-    // Hàm này được gọi từ Card khi người chơi chọn xong
     public void CardSelected()
     {
-        // Tắt menu trước
         cardSelectMenuPanel.SetActive(false);
 
         // Kiểm tra xem XP hiện tại có đủ để lên cấp tiếp không?

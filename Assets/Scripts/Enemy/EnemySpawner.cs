@@ -14,9 +14,8 @@ public class EnemySpawner : MonoBehaviour
     public float gameMaxY = 50f;
 
     // PHẠM VI LỚN HƠN (Khu vực ĐƯỢC spawn) - Xác định phạm vi tối đa quái có thể xuất hiện
-    public float outerBorder = 30f; // Khoảng cách tối đa từ viền game ra ngoài.
+    public float outerBorder = 30f; 
 
-    // Ví dụ: Spawn từ X=-121 đến X=121 và Y=-80 đến Y=80
     private float spawnMinX => gameMinX - outerBorder;
     private float spawnMaxX => gameMaxX + outerBorder;
     private float spawnMinY => gameMinY - outerBorder;
@@ -57,28 +56,28 @@ public class EnemySpawner : MonoBehaviour
 
         if (side == 0) // Spawn Cạnh TRÊN (Y cố định, X ngẫu nhiên)
         {
-            // Y nằm ngoài khu vực game, ví dụ: Y = Random.Range(50, 50 + outerBorder)
+            // Y nằm ngoài khu vực game
             randomY = Random.Range(gameMaxY, spawnMaxY);
             // X nằm trong phạm vi lớn hơn
             randomX = Random.Range(spawnMinX, spawnMaxX);
         }
         else if (side == 1) // Spawn Cạnh DƯỚI (Y cố định, X ngẫu nhiên)
         {
-            // Y nằm ngoài khu vực game, ví dụ: Y = Random.Range(-50 - outerBorder, -50)
+            // Y nằm ngoài khu vực game
             randomY = Random.Range(spawnMinY, gameMinY);
             // X nằm trong phạm vi lớn hơn
             randomX = Random.Range(spawnMinX, spawnMaxX);
         }
         else if (side == 2) // Spawn Cạnh TRÁI (X cố định, Y ngẫu nhiên)
         {
-            // X nằm ngoài khu vực game, ví dụ: X = Random.Range(-91 - outerBorder, -91)
+            // X nằm ngoài khu vực game
             randomX = Random.Range(spawnMinX, gameMinX);
             // Y nằm trong phạm vi lớn hơn
             randomY = Random.Range(spawnMinY, spawnMaxY);
         }
         else // side == 3 - Spawn Cạnh PHẢI (X cố định, Y ngẫu nhiên)
         {
-            // X nằm ngoài khu vực game, ví dụ: X = Random.Range(91, 91 + outerBorder)
+            // X nằm ngoài khu vực game
             randomX = Random.Range(gameMaxX, spawnMaxX);
             // Y nằm trong phạm vi lớn hơn
             randomY = Random.Range(spawnMinY, spawnMaxY);

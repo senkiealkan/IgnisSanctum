@@ -11,10 +11,10 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Combat Settings")]
     [Tooltip("Thời gian bị choáng, không thể di chuyển")]
-    public float knockbackDuration = 0.4f; // Giữ cái này ngắn thôi (0.3 - 0.5)
+    public float knockbackDuration = 0.4f; 
 
     [Tooltip("Thời gian bất tử sau khi bị đánh")]
-    public float invincibilityDuration = 2.0f; // Cái này phải dài hơn knockback (1.5 - 2.0)
+    public float invincibilityDuration = 2.0f; 
 
     [Tooltip("Tốc độ nhấp nháy khi bất tử")]
     public float flashDuration = 0.1f;
@@ -44,8 +44,6 @@ public class PlayerHealth : MonoBehaviour
     public float knockbackTimer = 0f;
 
     private bool isInvulnerable = false;
-
-    // Hàm này dùng cho Dash hoặc các skill đặc biệt
     public void SetInvulnerability(bool isInvulnerable)
     {
         this.isInvulnerable = isInvulnerable;
@@ -116,7 +114,7 @@ public class PlayerHealth : MonoBehaviour
         if (knockbackTimer > 0)
         {
             knockbackTimer -= Time.deltaTime;
-            if (knockbackTimer <= 0f) // Lưu ý: Logic cũ của bạn là 0.5, hãy chắc chắn nó khớp với knockbackDuration
+            if (knockbackTimer <= 0f) 
             {
                 if (rb != null)
                 {
@@ -161,7 +159,6 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // [MOVED & UPDATED] Logic Flash cũ đã được thay thế bằng Logic xịn hơn
     private IEnumerator InvulnerabilitySequence()
     {
         isInvulnerable = true; // Bật bất tử ngay lập tức
@@ -188,16 +185,14 @@ public class PlayerHealth : MonoBehaviour
         // Tắt bất tử
         isInvulnerable = false;
 
-        // Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
     }
 
     public void ApplyKnockback(Vector2 force)
     {
-        if (isInvulnerable && knockbackTimer <= 0) return; // Nếu đang bất tử thì có thể chọn không bị đẩy lùi thêm
+        if (isInvulnerable && knockbackTimer <= 0) return; 
 
         if (rb != null)
         {
-            // col.enabled = false; // [LƯU Ý] Tắt cái này ở đây có thể làm Player rơi khỏi map nếu không cẩn thận layer
             animator.SetBool("isKnockback", true);
             knockbackTimer = knockbackDuration;
             rb.linearVelocity = Vector2.zero;

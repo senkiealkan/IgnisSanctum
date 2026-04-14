@@ -10,8 +10,8 @@ public class PlayerInventory : MonoBehaviour
     public int manaPotions = 0;
 
     [Header("Settings")]
-    public float healAmount = 30f; // Hồi 30 HP
-    public float manaRestoreAmount = 20f; // Hồi 20 Mana
+    public float healAmount = 30f;
+    public float manaRestoreAmount = 20f; 
 
     [Header("UI References")]
     public TextMeshProUGUI hpPotionText;
@@ -34,13 +34,13 @@ public class PlayerInventory : MonoBehaviour
 
     private void Update()
     {
-        // Kiểm tra phím Q (Hồi máu)
+        // Kiểm tra phím Q 
         if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             UseHpPotion();
         }
 
-        // Kiểm tra phím E (Hồi Mana)
+        // Kiểm tra phím E
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             UseManaPotion();
@@ -56,11 +56,10 @@ public class PlayerInventory : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // [ADD] Hàm này chạy mỗi khi load lại màn (Rebirth)
+    // [Hàm này chạy mỗi khi load lại màn (Rebirth)
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // 1. Tìm lại UI Text trong scene mới 
-        // Ví dụ: GameObject tên là "Text_HP_Potion" và "Text_Mana_Potion" trong Canvas
         GameObject hpTextObj = GameObject.Find("Text_HP_Potion"); 
         GameObject manaTextObj = GameObject.Find("Text_Mana_Potion"); 
 
@@ -71,15 +70,12 @@ public class PlayerInventory : MonoBehaviour
         UpdateUI();
     }
 
-    // [ADD] Hàm Reset dùng cho Rebirth
     public void ResetInventory()
     {
         hpPotions = 0;
         manaPotions = 0;
         UpdateUI();
     }
-
-    // ... (Giữ nguyên các hàm AddPotion, UseHpPotion... bên dưới) ...
 
 public void AddPotion(PotionType type, int amount)
     {
@@ -101,7 +97,7 @@ public void AddPotion(PotionType type, int amount)
         {
             hpPotions--;
 
-            // Gọi hàm hồi máu bên PlayerHealth (Sếp cần thêm hàm Heal public nhé)
+            // Gọi hàm hồi máu bên PlayerHealth 
             AudioSource.PlayClipAtPoint(usePotionSound, Camera.main.transform.position, 1f);
             playerHealth.Heal(healAmount);
             Instantiate(healHPEffect, transform.position, Quaternion.identity);

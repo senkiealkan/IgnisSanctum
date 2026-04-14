@@ -30,7 +30,6 @@ public class WaveManager : MonoBehaviour
     [Header("UI References")]
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI enemiesLeftText;
-    public GameObject waveCompletedPanel; // Hiện khi thắng hết các wave
 
     // State
     private int totalEnemiesInWave;
@@ -66,7 +65,7 @@ public class WaveManager : MonoBehaviour
             BossHealthBar.Instance.Hide();
         }
         // 1. Dọn dẹp sạch sẽ trước khi bắt đầu
-        StopAllCoroutines(); // [QUAN TRỌNG] Giết chết mọi luồng spawn cũ đang chạy dở
+        StopAllCoroutines(); 
         isSpawning = false;
         isWaveFinished = false;
 
@@ -137,11 +136,10 @@ public class WaveManager : MonoBehaviour
         {
             Debug.Log("Arena Cleared! Spawning Portal.");
             SpawnPortal();
-            if (waveCompletedPanel != null) waveCompletedPanel.SetActive(true);
             yield break;
         }
 
-        // [FIX] Save ngay đầu wave để đảm bảo dữ liệu đúng với wave hiện tại
+        // Save ngay đầu wave để đảm bảo dữ liệu đúng với wave hiện tại
         if (EssentialsManager.Instance != null && !EssentialsManager.Instance.isLoadingSavedGame)
         {
             EssentialsManager.Instance.SaveRunData();
@@ -204,16 +202,16 @@ public class WaveManager : MonoBehaviour
                 }
             }
 
-            // 2. KIỂM TRA VẬT CẢN (TƯỜNG/CỘT)
+            // 2. KIỂM TRA VẬT CẢN
             // Quét một vòng tròn xem có trúng Layer Tường không
             Collider2D hit = Physics2D.OverlapCircle(potentialPos, checkRadius, obstacleLayer);
 
             if (hit == null)
             {
-                // Không va vào tường -> Vị trí ngon!
+                // Không va vào tường -> Vị trí ngon
                 spawnPos = potentialPos;
                 validPositionFound = true;
-                break; // Thoát vòng lặp
+                break; 
             }
         }
 
@@ -221,7 +219,7 @@ public class WaveManager : MonoBehaviour
         {
             Instantiate(spawnEffect, spawnPos, Quaternion.identity);
             GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
-            // Setup Enemy logic cũ
+            // Setup Enemy 
             EnemyHealth healthScript = enemy.GetComponent<EnemyHealth>();
             if (healthScript != null)
             {
@@ -240,7 +238,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    // Hàm random thuần túy trong vùng bounds (sửa lại logic spawn rìa cũ thành spawn toàn map)
+    // Hàm random thuần túy trong vùng bounds 
     private Vector2 GetRandomPositionInArena()
     {
         float x = Random.Range(minBounds.x, maxBounds.x);
@@ -248,7 +246,7 @@ public class WaveManager : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    // Vẽ Gizmos để sếp dễ chỉnh minBounds/maxBounds trong Editor
+    // VGizmos 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

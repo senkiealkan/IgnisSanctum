@@ -9,7 +9,7 @@ public class TornadoProjectile : MonoBehaviour
     public bool isCritical = false;
     [HideInInspector] public Vector2 flyDirection;
     [HideInInspector] public float damage; 
-    [HideInInspector] public XPManager xpManager; // Để cộng exp
+    [HideInInspector] public XPManager xpManager; 
 
     private AudioSource audioSource;
     public AudioClip movingSound;

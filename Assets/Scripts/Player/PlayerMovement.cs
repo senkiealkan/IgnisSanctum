@@ -24,12 +24,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     public bool IsDashing => isDashing;
     private float dashCooldownTimer;
-    public GameObject dashTrail; // Kéo thả Trail Renderer child vào đây
-    // [CHANGE] Biến mới cho Multi-Dash
+    public GameObject dashTrail; 
     private int currentDashCharges;
     private bool canDash = true;
-    // Input cho Dash
-    public InputAction dashAction; // Thêm một InputAction mới cho phím Dash (ví dụ: Space)
+    public InputAction dashAction;
 
     [Header("Sound")]
     public AudioSource audioSource;
@@ -41,10 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         playerControls.Enable();
-        // Bật Input Dash
-        // 1. Kích hoạt Input Action
         dashAction.Enable();
-        // 2. Đăng ký hàm OnDash vào sự kiện performed (khi phím được nhấn)
         dashAction.performed += OnDash;
     }
     private void OnDisable()
@@ -65,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = stats.TotalMoveSpeed;
         dashCooldownTimer = 0f; // Bắt đầu Dash sẵn sàng
         currentDashCharges = stats.MaxDashCount;
-        // Đảm bảo DashTrail bắt đầu là Disabled nếu có
+        // Đảm bảo DashTrail bắt đầu là Disabled
         if (dashTrail != null) dashTrail.SetActive(false);
         if (stats != null)
         {
@@ -88,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = stats.TotalMoveSpeed;
         }
     }
-    // Update is called once per frame
     void Update()
     {
         if (playerHealth.isDead) return;
@@ -223,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Khóa hướng di chuyển trong khi Dash
         Vector2 dashVelocity = direction * dashSpeed;
-        rb.linearVelocity = dashVelocity; // Set velocity ngay lập tức
+        rb.linearVelocity = dashVelocity; 
 
         // 3. Chờ hết thời gian Dash
         yield return new WaitForSeconds(dashTime);
@@ -245,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
     private void ManageFootsteps()
     {
         // Điều kiện 1: Đang di chuyển
-        // Điều kiện 2: KHÔNG đang bị knockback (đã được kiểm tra ở đầu Update, nhưng kiểm tra lại cho chắc)
+        // Điều kiện 2: KHÔNG đang bị knockback 
         if (IsMoving && playerHealth.knockbackTimer <= 0.5)
         {
             footstepTimer -= Time.deltaTime;

@@ -4,18 +4,18 @@ using TMPro;
 
 public class BossHealthBar : MonoBehaviour
 {
+    // Tạo Singleton để Boss  gọi
     public static BossHealthBar Instance;
 
     [Header("UI References")]
-    public GameObject healthBarPanel; // Cái Panel chứa cả thanh máu và tên
+    public GameObject healthBarPanel; 
     public Slider healthSlider;
     public TextMeshProUGUI bossNameText;
 
     private void Awake()
     {
-        // Tạo Singleton để Boss dễ gọi
-        if (Instance == null) Instance = this;
 
+        if (Instance == null) Instance = this;
         // Mặc định ẩn đi khi vào game
         Hide();
     }

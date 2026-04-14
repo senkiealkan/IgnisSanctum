@@ -3,8 +3,8 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class EnemyRangedCombat : MonoBehaviour
 {
-    public GameObject projectilePrefab; // Projectile Prefab
-    public Transform firePoint; // Điểm xuất phát của Projectile (thường là miệng/tay của Enemy)
+    public GameObject projectilePrefab; 
+    public Transform firePoint;
     private Transform playerTarget;
     private EnemyMovement_Attacker enemyMovement;
     private Animator animator;
@@ -17,14 +17,13 @@ public class EnemyRangedCombat : MonoBehaviour
         enemyMovement = GetComponent<EnemyMovement_Attacker>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        // Tìm Player Target (hoặc lấy từ EnemyMovement_Attacker)
+        // Tìm Player Target
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
             playerTarget = playerObject.transform;
         }
 
-        // Đảm bảo firePoint được gán
         if (firePoint == null)
         {
             Debug.LogError("FirePoint is not assigned on " + gameObject.name);
@@ -39,7 +38,7 @@ public class EnemyRangedCombat : MonoBehaviour
         }
         
     }
-    // Hàm này được gọi bằng Animation Event trong animation tấn công của Enemy
+    // Gọi bằng Animation Event trong animation tấn công của Enemy
     public void ShootProjectile()
     {
         if (projectilePrefab != null && firePoint != null && playerTarget != null)

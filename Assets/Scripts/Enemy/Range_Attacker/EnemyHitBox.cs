@@ -22,7 +22,6 @@ public class EnemyHitBox : MonoBehaviour
     {
         hasHitPlayer = false;
     }
-    // Hàm này sẽ được gọi khi HitBox va chạm với Player (vì là Trigger)
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Chỉ xử lý va chạm nếu HitBox đang active
@@ -35,11 +34,8 @@ public class EnemyHitBox : MonoBehaviour
                 if (slash!= null)
                 {
                     audioSource.PlayOneShot(slash);
-                    Debug.Log("SLASHHHHHH");
                 }
 
-                // 1. Tính toán hướng Knockback
-                // Sử dụng vị trí của Enemy (cha của HitBox) để tính hướng
                 Transform enemyRoot = transform.root;
                 Vector2 knockbackDirection = (other.transform.position - enemyRoot.position).normalized;
                 playerHealth.TakeDamage(damageToPlayer);

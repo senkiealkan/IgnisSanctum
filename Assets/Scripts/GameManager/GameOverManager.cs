@@ -28,20 +28,20 @@ public class GameOverManager : MonoBehaviour
    
     public void Rebirth()
     {
-        // 1. Lưu Gem (Meta) lại cho chắc
+        // 1. Lưu Gem 
         if (MetaProgressionManager.Instance != null) MetaProgressionManager.Instance.SaveData();
 
         // 2. Set cờ báo hiệu đây là một lượt chơi mới
         if (EssentialsManager.Instance != null)
         {
-            EssentialsManager.Instance.ClearRunData(); // Xóa save cũ
-            EssentialsManager.Instance.isStartingNewRun = true; // Báo cho EssentialsManager biết để reset toàn bộ (bao gồm cả XP)
+            EssentialsManager.Instance.ClearRunData(); 
+            EssentialsManager.Instance.isStartingNewRun = true; 
         }
 
         Time.timeScale = 1f;
         gameOverPanel.SetActive(false);
 
-        // 3. Load lại Scene (EssentialsManager sẽ tự lo phần reset khi scene load xong)
+        // 3. Load lại Scene 
         if (PlayerPrefs.GetInt("TutorialCompleted", 0) == 1)
             SceneManager.LoadScene("Arena1-Temple");
         else
@@ -50,7 +50,7 @@ public class GameOverManager : MonoBehaviour
 
     public void ReturnMainMenu()
     {
-        // [FIX] Lưu Gem lại ngay lập tức trước khi tái sinh cho chắc ăn
+        // Lưu Gem lại ngay lập tức trước khi tái sinh 
         if (MetaProgressionManager.Instance != null)
         {
             MetaProgressionManager.Instance.SaveData();
@@ -85,7 +85,6 @@ public class GameOverManager : MonoBehaviour
     }
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
         Application.Quit();
     }
     public void TogglePanel()

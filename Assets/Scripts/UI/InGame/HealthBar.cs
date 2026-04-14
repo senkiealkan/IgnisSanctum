@@ -43,9 +43,6 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(float health)
     {
         healthBar.value = health;
-
-        // [FIXED] Lỗi ở đây: Trước đây sếp truyền (health, health)
-        // Bây giờ sửa thành (health, healthBar.maxValue) để lấy MaxHealth từ Slider
         UpdateText(health, healthBar.maxValue);
     }
 
@@ -73,7 +70,7 @@ public class HealthBar : MonoBehaviour
             initialScale.z
         );
 
-        // [OPTIMIZED] Dừng Coroutine cũ nếu đang chạy để tránh xung đột
+        // Dừng Coroutine cũ nếu đang chạy để tránh xung đột
         StopAllCoroutines();
         
         StartCoroutine(SmoothScale(targetScale, 0.5f));
@@ -86,7 +83,6 @@ public class HealthBar : MonoBehaviour
 
         while (elapsed < duration)
         {
-            // Sếp nhớ dùng Time.unscaledDeltaTime nếu muốn animation chạy kể cả khi pause game (tùy chọn)
             rootRectTransform.localScale = Vector3.Lerp(startScale, targetScale, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;

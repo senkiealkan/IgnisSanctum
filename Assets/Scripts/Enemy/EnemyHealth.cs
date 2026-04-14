@@ -32,11 +32,11 @@ public class EnemyHealth : MonoBehaviour
     public GameObject fireGemPrefab;
     public GameObject hpPotionPrefab;   
     public GameObject manaPotionPrefab;
-    [Range(0f, 1f)] public float gemDropChance = 0.5f;   // 50%
-    [Range(0f, 1f)] public float potionDropChance = 0.2f; // 20% (Thấp hơn)
+    [Range(0f, 1f)] public float gemDropChance = 0.5f;   
+    [Range(0f, 1f)] public float potionDropChance = 0.2f; 
 
     [Header("Boss Settings")]
-    public bool isBoss = false; // Tích vào ô này trong Prefab của Boss
+    public bool isBoss = false; 
     public string bossName = "Dark Lord :D";
     private void Start()
     {
@@ -65,10 +65,6 @@ public class EnemyHealth : MonoBehaviour
                 if (hasHitAnim) animator.SetBool("isHit", false);
             }
         }
-
-        // **LƯU Ý:** Đảm bảo logic di chuyển của Enemy được kiểm tra:
-        // Enemy CHỈ di chuyển (theo đuổi Player) nếu knockbackTimer <= 0. 
-        // Nếu không, logic di chuyển của Enemy sẽ ghi đè vận tốc Knockback.
     }
     public void TakeDamage(float damage, bool isCritical = false)
     {
@@ -106,8 +102,7 @@ public class EnemyHealth : MonoBehaviour
         }
         Debug.Log($"{gameObject.name} took {damage} damage! HP left: {currentHealth}");
 
-        //if (animator != null)
-        //    animator.SetTrigger("Hit");
+ 
 
         if (currentHealth <= 0)
         {
@@ -154,7 +149,7 @@ public class EnemyHealth : MonoBehaviour
     }
     private void DropLoot()
     {
-        // 1. Check rơi Gem (Độc lập)
+        // 1. Check rơi Gem 
         if (UnityEngine.Random.value <= gemDropChance)
         {
             GameObject gem = (UnityEngine.Random.value > 0.5f) ? statGemPrefab : fireGemPrefab;

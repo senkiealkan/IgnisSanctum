@@ -6,13 +6,12 @@ public class CardMenuManager : MonoBehaviour
 {
     public List<UpgradeCardConfig> allUpgradeCards;
 
-    // Kéo thả Prefab Card UI vào đây
     public GameObject cardUIPrefab;
 
-    // Kéo thả Horizontal Layout Group vào đây (nơi chứa 3 Card)
+    // Horizontal Layout Group
     public Transform cardContainer;
 
-    public XPManager xpManager; // Tham chiếu đến XPManager
+    public XPManager xpManager;
     public PlayerStats playerStats;
     public CanvasGroup menuCanvasGroup;
     public float safetyDelay = 0.5f;
@@ -32,7 +31,7 @@ public class CardMenuManager : MonoBehaviour
         }
         activeCards.Clear();
 
-        // 1. Chọn 3 Card ngẫu nhiên (hoặc ít hơn nếu không đủ)
+        // 1. Chọn 3 Card ngẫu nhiên 
         List<UpgradeCardConfig> availableCards = new List<UpgradeCardConfig>(allUpgradeCards);
 
         for (int i = 0; i < 3 && availableCards.Count > 0; i++)
@@ -45,11 +44,11 @@ public class CardMenuManager : MonoBehaviour
             newCard.transform.localScale = Vector3.one;
             activeCards.Add(newCard);
 
-            // 3. Cấu hình Card UI (Cần có script CardDisplay trên Prefab)
+            // 3. Cấu hình Card UI 
             CardDisplay cardDisplay = newCard.GetComponent<CardDisplay>();
             if (cardDisplay != null)
             {
-                cardDisplay.Setup(selectedConfig, this); // Truyền config và manager
+                cardDisplay.Setup(selectedConfig, this); 
             }
 
             availableCards.RemoveAt(randomIndex);
@@ -64,7 +63,7 @@ public class CardMenuManager : MonoBehaviour
         {
             timer += Time.unscaledDeltaTime;
 
-            // [Tùy chọn] Hiệu ứng Fade In (Hiện dần lên)
+            //  Hiệu ứng Fade In 
             if (menuCanvasGroup != null)
             {
                 menuCanvasGroup.alpha = Mathf.Lerp(0f, 1f, timer / safetyDelay);
@@ -84,7 +83,7 @@ public class CardMenuManager : MonoBehaviour
     // --- Hàm xử lý khi Card được người chơi chọn ---
     public void ApplyUpgrade(UpgradeCardConfig config)
     {
-        // **TODO:** Áp dụng logic nâng cấp vào PlayerStats
+        // Áp dụng logic nâng cấp vào PlayerStats
         playerStats.ApplyUpgrade(config);
 
         // Gọi lại XPManager để tiếp tục game

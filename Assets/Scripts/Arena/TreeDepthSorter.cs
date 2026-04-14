@@ -14,7 +14,6 @@ public class TreeDepthSorter : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Tìm Player theo Tag
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -24,7 +23,6 @@ public class TreeDepthSorter : MonoBehaviour
 
     void Update()
     {
-        // Nếu chưa tìm thấy Player (do Player spawn trễ) thì tìm lại
         if (playerTarget == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");

@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(EnemyHealth))]
-[RequireComponent(typeof(AudioSource))] // Yêu cầu AudioSource trên Knight
+
 public class KnightController : MonoBehaviour
 {
     public enum KnightState { Walk, LightAttack, Dashing, HeavyAttack, Dead }
@@ -23,8 +22,8 @@ public class KnightController : MonoBehaviour
     public AudioClip lightAttackSound;
     [Tooltip("Kéo GameObject con chứa Light Hitbox vào đây")]
     public GameObject lightHitBoxObj;
-    private Collider2D lightHitBoxCol;     // Cache collider
-    private EnemyHitBox lightHitBoxScript; // Cache script
+    private Collider2D lightHitBoxCol;     
+    private EnemyHitBox lightHitBoxScript;
 
     [Header("Heavy Attack Settings")]
     public float heavyAttackRangeX = 7f;
@@ -33,8 +32,8 @@ public class KnightController : MonoBehaviour
     public AudioClip heavyAttackSound;
     [Tooltip("Kéo GameObject con chứa Heavy Hitbox vào đây")]
     public GameObject heavyHitBoxObj;
-    private Collider2D heavyHitBoxCol;     // Cache collider
-    private EnemyHitBox heavyHitBoxScript; // Cache script
+    private Collider2D heavyHitBoxCol;     
+    private EnemyHitBox heavyHitBoxScript;
 
     public TrailRenderer dashTrail;
 
@@ -64,14 +63,13 @@ public class KnightController : MonoBehaviour
 
         enemyHealth.OnDeath += OnDeath;
 
-        // --- SETUP LIGHT HITBOX (Theo style Thanatos) ---
+        // --- SETUP LIGHT HITBOX  ---
         if (lightHitBoxObj != null)
         {
-            // Lấy các component cần thiết
             lightHitBoxCol = lightHitBoxObj.GetComponent<Collider2D>();
             lightHitBoxScript = lightHitBoxObj.GetComponent<EnemyHitBox>();
 
-            // QUAN TRỌNG: Bật GameObject lên, nhưng tắt Collider đi
+            // Bật GameObject lên, nhưng tắt Collider đi
             lightHitBoxObj.SetActive(true);
             if (lightHitBoxCol != null) lightHitBoxCol.enabled = false;
         }
@@ -82,7 +80,6 @@ public class KnightController : MonoBehaviour
             heavyHitBoxCol = heavyHitBoxObj.GetComponent<Collider2D>();
             heavyHitBoxScript = heavyHitBoxObj.GetComponent<EnemyHitBox>();
 
-            // QUAN TRỌNG: Bật GameObject lên, nhưng tắt Collider đi
             heavyHitBoxObj.SetActive(true);
             if (heavyHitBoxCol != null) heavyHitBoxCol.enabled = false;
         }
@@ -207,11 +204,11 @@ public class KnightController : MonoBehaviour
         SwitchState(KnightState.Walk);
     }
 
-    // --- ANIMATION EVENTS (Gắn vào Animation) ---
+    // --- ANIMATION EVENTS  ---
 
     public void EnableLightHitbox()
     {
-        // 1. Phát âm thanh (nếu có)
+        // 1. Phát âm thanh
         if (audioSource && lightAttackSound)
             audioSource.PlayOneShot(lightAttackSound);
 

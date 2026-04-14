@@ -30,15 +30,15 @@ public class DamagePopup : MonoBehaviour
 
         if (isCritical)
         {
-            textMesh.fontSize = 10; // Hoặc logic scale chữ to
+            textMesh.fontSize = 10; 
             textColor = Color.yellow;
             transform.localScale = Vector3.one * 1.5f;
         }
         else
         {
-            // QUAN TRỌNG: Phải reset về bình thường nếu không object cũ đang to sẽ vẫn to
+            // Phải reset về bình thường nếu không object cũ đang to sẽ vẫn to
             textMesh.fontSize = defaultFontSize;
-            textColor = Color.white; // Hoặc màu gốc của bạn
+            textColor = Color.white; 
             transform.localScale = Vector3.one;
         }
 

@@ -11,7 +11,7 @@ public class MetaUpgradeShop : MonoBehaviour
     // Health
     public TextMeshProUGUI healthLevelText;
     public TextMeshProUGUI healthCostText; 
-    public Button healthBuyButton; // [ADD] Để disable nút nếu không đủ tiền
+    public Button healthBuyButton; // Để disable nút nếu không đủ tiền
 
     // Damage
     public TextMeshProUGUI damageLevelText;
@@ -157,7 +157,7 @@ public class MetaUpgradeShop : MonoBehaviour
         return baseCost * (currentLevel + 1);
     }
 
-    // --- CÁC HÀM MUA (Gán vào Button) ---
+    // --- CÁC HÀM MUA ---
 
     public void BuyHealthUpgrade()
     {
@@ -169,7 +169,7 @@ public class MetaUpgradeShop : MonoBehaviour
             manager.statGems -= cost;
             manager.healthLevel++;
             manager.SaveData();
-            UpdateUI(); // Refresh lại UI ngay
+            UpdateUI(); 
         }
     }
 
@@ -244,7 +244,7 @@ public class MetaUpgradeShop : MonoBehaviour
         var manager = MetaProgressionManager.Instance;
         int cost = CalculateCost(baseFireDamageCost, manager.fireDamageLevel);
 
-        if (manager.fireGems >= cost) // Chú ý: Dùng Fire Gems
+        if (manager.fireGems >= cost) 
         {
             manager.fireGems -= cost;
             manager.fireDamageLevel++;
@@ -266,7 +266,6 @@ public class MetaUpgradeShop : MonoBehaviour
         }
     }
 
-    // [NEW] Buy Explosion
     public void BuyExplosionUpgrade()
     {
         var manager = MetaProgressionManager.Instance;

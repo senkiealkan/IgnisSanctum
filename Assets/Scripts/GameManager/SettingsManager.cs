@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
     [Header("Audio Mixer")]
-    public AudioMixer mainMixer; // Kéo MainMixer vào đây
+    public AudioMixer mainMixer;
 
     [Header("UI References")]
     public GameObject optionsPanel;
@@ -16,19 +16,16 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
-        // Khi game bật lên, load lại các cài đặt cũ đã lưu
         LoadSettings();
     }
 
-    // --- PHẦN ÂM THANH ---
-    // Sếp gán hàm này vào sự kiện OnValueChanged của Slider Master
     public void SetMasterVolume(float value)
     {
         // Công thức chuyển từ Slider (0.0001 -> 1) sang Decibel (-80 -> 0)
         // Log10 giúp thanh trượt mượt tai hơn
         float dB = Mathf.Log10(value) * 20;
         mainMixer.SetFloat("MasterVol", dB);
-        PlayerPrefs.SetFloat("MasterVol", value); // Lưu lại giá trị slider
+        PlayerPrefs.SetFloat("MasterVol", value); 
     }
 
     public void SetMusicVolume(float value)
@@ -79,19 +76,5 @@ public class SettingsManager : MonoBehaviour
         if (fullscreenToggle) fullscreenToggle.isOn = isFullscreen;
         Screen.fullScreen = isFullscreen;
     }
-    //public void SaveSettings()
-    //{
-    //    if (masterSlider) PlayerPrefs.SetFloat("MasterVol", masterSlider.value);
-    //    if (musicSlider) PlayerPrefs.SetFloat("MusicVol", musicSlider.value);
-    //    if (sfxSlider) PlayerPrefs.SetFloat("SFXVol", sfxSlider.value);
 
-    //    PlayerPrefs.Save();
-    //    Debug.Log("Settings Saved!");
-    //}
-
-    // [ADD] Gọi hàm SaveSettings khi object này bị tắt (tức là lúc đóng bảng Options)
-    //private void OnDisable()
-    //{
-    //    SaveSettings();
-    //}
 }

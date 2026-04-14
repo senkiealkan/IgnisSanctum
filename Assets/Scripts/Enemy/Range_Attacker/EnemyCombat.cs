@@ -4,7 +4,6 @@ using UnityEngine.Audio;
 
 public class EnemyCombat : MonoBehaviour
 {
-    // Cần tham chiếu đến EnemyMovement_Attacker để lấy biến isAttacking
     private EnemyMovement_Attacker enemyMovement;
     private Animator animator;
     public Collider2D hitbox;
@@ -17,7 +16,6 @@ public class EnemyCombat : MonoBehaviour
 
     void Start()
     {
-        // Lấy các Components cần thiết
         enemyMovement = GetComponent<EnemyMovement_Attacker>();
         animator = GetComponent<Animator>();
         hitbox.GetComponentInChildren<Collider2D>();
@@ -57,7 +55,7 @@ public class EnemyCombat : MonoBehaviour
     public void ActivateHitBox()
     {
         hitbox.enabled = true;
-        // 🌟 RESET CỜ ĐẢM BẢO CHẮC CHẮN LUÔN CÓ SÁT THƯƠNG
+        // RESET CỜ ĐẢM BẢO CHẮC CHẮN LUÔN CÓ SÁT THƯƠNG
         if (enemyHitBox != null)
         {
             enemyHitBox.ResetHit();

@@ -47,12 +47,8 @@ public class PlayerStats : MonoBehaviour
     private float moveSpeedBonus_InRun = 0f;
     private float damageResistance_InRun = 0f;
 
-    // 1. KHAI BÁO BIẾN IN-RUN MỚI
     private float cooldownReduction_InRun = 0f;
 
-    // [FIX 2] Sửa mặc định thành 0f. 
-    // Vì công thức là Cộng dồn (Add), nên mặc định phải là 0.
-    // Nếu để 1, công thức (1 + Meta + InRun) sẽ thành (1 + 0 + 1) = x2 ngay từ đầu game.
     private float manaRegenMultiplier_InRun = 0f;
 
     private float criticalChance_InRun = 0.01f;
@@ -92,10 +88,7 @@ public class PlayerStats : MonoBehaviour
 
     public event Action OnStatsChanged;
 
-    // [FIX 1] Đổi từ Awake() sang Start()
-    // Lý do: MetaProgressionManager khởi tạo trong Awake. 
-    // Nếu PlayerStats cũng chạy Awake và nhanh hơn MetaManager, nó sẽ không tìm thấy Instance và load sai dữ liệu.
-    // Chuyển sang Start đảm bảo MetaManager đã sẵn sàng.
+
     private void Start()
     {
         RecalculateStats();
@@ -124,8 +117,6 @@ public class PlayerStats : MonoBehaviour
             RealBaseDashCount = configBaseDashCount;
             RealBaseMaxMana = configBaseMaxMana;
 
-            // [FIX 3] Sửa fallback về 0. 
-            // Nếu không có Meta, bonus phải là 0. Trước đây để 1f là sai (thành +100%).
             MetaManaRegenBonus = 0f;
             MetaCritChanceBonus = 0f;
         }
@@ -184,7 +175,6 @@ public class PlayerStats : MonoBehaviour
 
         cooldownReduction_InRun = 0f;
 
-        // [FIX 2] Reset về 0
         manaRegenMultiplier_InRun = 0f;
 
         criticalChance_InRun = 0.1f;
@@ -194,7 +184,6 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("Player Stats (In-Run) have been RESET!");
     }
 
-    // Các hàm Save/Load giữ nguyên nhưng lưu ý biến manaRegenMultiplier_InRun giờ bắt đầu từ 0
     public void SaveRunStats()
     {
         PlayerPrefs.SetFloat("Run_MaxHealthBonus", maxHealthBonus_InRun);
@@ -205,8 +194,7 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetFloat("Run_FireDamageMult", fireDamageMultiplier_InRun);
         PlayerPrefs.SetFloat("Run_FireCostReduct", fireCostReduction_InRun);
 
-        // Sếp có thể thêm Save cho các biến mới nếu cần continue game
-    }
+]    }
 
     public void LoadRunStats()
     {

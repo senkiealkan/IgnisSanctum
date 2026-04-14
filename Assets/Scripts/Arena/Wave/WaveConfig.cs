@@ -15,7 +15,7 @@ public class WaveConfig : ScriptableObject
     {
         public string enemyName;
         public GameObject enemyPrefab;
-        public int amount; // Số lượng
+        public int amount;
     }
     public int GetTotalEnemyCount()
     {

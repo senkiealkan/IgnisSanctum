@@ -6,16 +6,14 @@ public class GemPickup : MonoBehaviour
     public int amount = 1;
 
     [Header("Magnet Settings")]
-    public float flySpeed = 5f;        // Tốc độ bay khởi điểm
+    public float flySpeed = 5f;        
     public float acceleration = 10f;   // Gia tốc (bay càng lâu càng nhanh)
     public float stopDistance = 0.5f;  // Khoảng cách để "ăn" gem
 
     [Header("Audio")]
     public AudioClip pickUpSound;
     public GameObject pickupEffect;
-    // Không cần AudioSource component trên object nữa nếu dùng PlayClipAtPoint
-    // Nhưng nếu muốn chỉnh volume thì vẫn cần logic khác. 
-    // Ở đây mình dùng PlayClipAtPoint cho đơn giản và hiệu quả.
+
 
     private Transform targetPlayer;
     private bool isAbsorbing = false;
@@ -25,7 +23,7 @@ public class GemPickup : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Chỉ kích hoạt nếu chưa bị hút và đối tượng là Player
+        
         if (other.CompareTag("Player") && !isAbsorbing)
         {
             StartAbsorbing(other.transform);
@@ -37,15 +35,10 @@ public class GemPickup : MonoBehaviour
         isAbsorbing = true;
         targetPlayer = playerTransform;
 
-        // Tắt Collider ngay lập tức để tránh Gem bị va chạm/cản trở khi bay
-        // hoặc tránh bị trigger 2 lần
+
         GetComponent<Collider2D>().enabled = false;
 
-        // Tùy chọn: Tắt hiệu ứng trọng lực (nếu Gem có Rigidbody) để nó bay mượt
-        /*
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null) rb.bodyType = RigidbodyType2D.Kinematic;
-        */
+      
     }
 
     private void Update()
@@ -86,11 +79,11 @@ public class GemPickup : MonoBehaviour
             // 1. Dùng vị trí của Gem (hoặc Player) thay vì vị trí Camera
             Vector3 audioPos = transform.position;
 
-            // 2. Chơi âm thanh với độ lệch cao độ (pitch) ngẫu nhiên 
-            //    để giảm lỗi chồng pha và tạo cảm giác sống động (Juicy)
+            // 2. Play âm thanh với độ lệch cao độ (pitch) ngẫu nhiên 
+            //    để giảm lỗi chồng pha và tạo cảm giác sống động 
             float randomPitch = Random.Range(0.9f, 1.1f); // Lệch 10%
 
-            // Sử dụng hàm tĩnh để chơi âm thanh
+            // Sử dụng hàm tĩnh để play âm thanh
             PlaySoundWithPitch(pickUpSound, audioPos, 1f, randomPitch);
         }
 

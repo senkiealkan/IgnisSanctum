@@ -58,7 +58,7 @@ public class PlayerMana : MonoBehaviour
         }
     }
 
-    // [FIX] Hàm này xử lý logic khi có nâng cấp
+    // Xử lý logic khi có nâng cấp
     private void UpdateManaStats()
     {
         float newMaxMana = stats.MaxMana;
@@ -75,7 +75,7 @@ public class PlayerMana : MonoBehaviour
             manaBar.SetMaxMana(localMaxMana);
         }
 
-        // Logic: Tăng bao nhiêu Max Mana thì hồi bấy nhiêu Current Mana
+        //  Tăng bao nhiêu Max Mana thì hồi bấy nhiêu Current Mana
         if (diff > 0)
         {
             RestoreMana(diff);
@@ -104,13 +104,10 @@ public class PlayerMana : MonoBehaviour
     }
     public void ResetMana()
     {
-        // Đồng bộ lại Max Mana (phòng trường hợp vừa nâng cấp xong)
+        // Đồng bộ lại Max Mana 
         localMaxMana = stats.MaxMana;
-
-        // Hồi đầy mana
         currentMana = localMaxMana;
 
-        // Cập nhật UI nếu đã kết nối
         if (manaBar != null)
         {
             manaBar.SetMaxMana(localMaxMana);

@@ -30,7 +30,7 @@ public class PotionPickup : MonoBehaviour
         if (isAbsorbing && targetPlayer != null)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPlayer.position, flySpeed * Time.deltaTime);
-            flySpeed += 10f * Time.deltaTime; // Gia tốc
+            flySpeed += 10f * Time.deltaTime; 
 
             if (Vector3.Distance(transform.position, targetPlayer.position) <= stopDistance)
             {
@@ -49,14 +49,8 @@ public class PotionPickup : MonoBehaviour
         Instantiate(pickupEffect, transform.position, Quaternion.identity);
         if (pickupSound != null)
         {
-            // 1. Dùng vị trí của Gem (hoặc Player) thay vì vị trí Camera
             Vector3 audioPos = transform.position;
-
-            // 2. Chơi âm thanh với độ lệch cao độ (pitch) ngẫu nhiên 
-            //    để giảm lỗi chồng pha và tạo cảm giác sống động (Juicy)
             float randomPitch = Random.Range(0.9f, 1.1f); // Lệch 10%
-
-            // Sử dụng hàm tĩnh để chơi âm thanh
             PlaySoundWithPitch(pickupSound, audioPos, 1f, randomPitch);
         }
         Destroy(gameObject);

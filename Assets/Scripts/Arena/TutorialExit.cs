@@ -10,11 +10,9 @@ public class TutorialExit : MonoBehaviour
             PlayerPrefs.SetInt("TutorialCompleted", 1);
             PlayerPrefs.Save();
 
-            // Báo cho GameFlow biết là xong Tutorial rồi, vào màn 1 đi
             if (GameFlowManager.Instance != null)
             {
-                GameFlowManager.Instance.currentArenaIndex = 0; // Hoặc set logic phù hợp
-                // Gọi hàm LoadNextArena() của GameFlowManager thay vì LoadScene trực tiếp
+                GameFlowManager.Instance.currentArenaIndex = 0; 
               
             }
             else

@@ -8,8 +8,8 @@ public class FireballProjectile : MonoBehaviour
     private float explosionRadius = 2f;
     private Animator animator;
     public bool isCritical = false;
-    [HideInInspector] public float damage; // Sẽ được gán từ PlayerCombat
-    [HideInInspector] public XPManager xpManager; // Để cộng exp
+    [HideInInspector] public float damage; 
+    [HideInInspector] public XPManager xpManager; 
 
     private AudioSource audioSource;
     public AudioClip explodeSound;
@@ -21,10 +21,8 @@ public class FireballProjectile : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        // Tự hủy sau một thời gian nếu không trúng gì
         Destroy(gameObject, lifetime);
 
-        // Gán vận tốc bay thẳng về phía trước (Right vector của object)
         rb.linearVelocity = transform.right * speed;
     }
 
@@ -46,7 +44,7 @@ public class FireballProjectile : MonoBehaviour
         // 1. Tạo hiệu ứng nổ
         animator.SetBool("isExploding", true);
         audioSource.PlayOneShot(explodeSound);
-        // 2. Gây sát thương diện rộng (hoặc đơn mục tiêu tùy sếp)
+        // 2. Gây sát thương diện rộng 
         // Ở đây làm đơn giản là quét vùng nổ
         Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (Collider2D hit in enemiesHit)
@@ -62,8 +60,6 @@ public class FireballProjectile : MonoBehaviour
                 }
             }
         }
-
-        // 3. Hủy quả cầu lửa
         Destroy(gameObject,0.3f);
     }
 

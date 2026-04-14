@@ -4,11 +4,10 @@ using UnityEngine.Audio;
 
 public class ChasedProjectileAttacker : MonoBehaviour
 {
-   
 
     public float projectileSpeed = 8f;
-    public float lifetime = 3f; // Thời gian tồn tại tối đa
-    public float explosionDuration = 0.5f; // Thời gian cho animation Expode
+    public float lifetime = 3f; 
+    public float explosionDuration = 0.5f; 
     private Transform playerTarget;
     private Animator animator;
     private bool isExploding = false;
@@ -24,20 +23,18 @@ public class ChasedProjectileAttacker : MonoBehaviour
     public float knockbackForce = 5f;
     [Header("Homing Settings")]
     public float rotationSpeed = 300f; // Tốc độ xoay (độ/giây)
-    private Vector2 currentDirection;
-    // Biến này được gọi bởi EnemyRangedCombat khi khởi tạo
+    private Vector2 currentDirection; // Gọi bởi EnemyRangedCombat khi khởi tạo
+
     public void Initialize(Transform target)
     {
         playerTarget = target;
-        // Tính toán hướng bay ngay lúc khởi tạo
+        // Tính toán hướng bay 
         if (playerTarget != null)
         {
-
             currentDirection = new Vector2(transform.position.x, transform.position.y);
             targetDirection = (playerTarget.position - transform.position).normalized;
-            //currentDirection = targetDirection;
+ 
             // a. Lấy góc hiện tại của projectile (từ hướng hiện tại)
-            // Lưu ý: Angle là góc tính từ trục X dương, từ -180 đến 180 độ
             float currentAngle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
 
             // b. Lấy góc mục tiêu (từ hướng mục tiêu)
@@ -48,7 +45,7 @@ public class ChasedProjectileAttacker : MonoBehaviour
             float newAngle = Mathf.MoveTowardsAngle(
                 currentAngle,
                 targetAngle,
-                rotationSpeed * Time.fixedDeltaTime // rotationSpeed là tốc độ xoay tối đa (độ/giây)
+                rotationSpeed * Time.fixedDeltaTime 
             );
 
             // d. Chuyển góc xoay mới (newAngle) trở lại thành Vector hướng mới
@@ -57,7 +54,7 @@ public class ChasedProjectileAttacker : MonoBehaviour
                 Mathf.Cos(newAngle * Mathf.Deg2Rad),
                 Mathf.Sin(newAngle * Mathf.Deg2Rad)
             );
-            // Xoay sprite cho phù hợp với hướng bay (tùy chọn)
+            // Xoay sprite cho phù hợp với hướng bay 
             float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
@@ -82,28 +79,24 @@ public class ChasedProjectileAttacker : MonoBehaviour
         if (playerTarget != null)
         {
             // 1. TÍNH TOÁN HƯỚNG MỤC TIÊU MỚI
-            // Hướng tới Player ở vị trí hiện tại
             Vector2 directionToTarget = (playerTarget.position - transform.position).normalized;
 
             // --- 2. XỬ LÝ XOAY MỀM MẠI BẰNG GÓC (Angle-based Rotation) ---
 
-            // a. Lấy góc hiện tại của projectile (từ hướng hiện tại)
-            // Lưu ý: Angle là góc tính từ trục X dương, từ -180 đến 180 độ
+            // a. Lấy góc hiện tại của projectile
             float currentAngle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
 
             // b. Lấy góc mục tiêu (từ hướng mục tiêu)
             float targetAngle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
 
             // c. Xoay góc hiện tại về góc mục tiêu một cách mượt mà
-            // Mathf.MoveTowardsAngle xử lý tự động việc đi qua điểm -180/180 độ
             float newAngle = Mathf.MoveTowardsAngle(
                 currentAngle,
                 targetAngle,
-                rotationSpeed * Time.fixedDeltaTime // rotationSpeed là tốc độ xoay tối đa (độ/giây)
+                rotationSpeed * Time.fixedDeltaTime 
             );
 
             // d. Chuyển góc xoay mới (newAngle) trở lại thành Vector hướng mới
-            // newAngle * Mathf.Deg2Rad chuyển độ sang radian
             currentDirection = new Vector2(
                 Mathf.Cos(newAngle * Mathf.Deg2Rad),
                 Mathf.Sin(newAngle * Mathf.Deg2Rad)
@@ -119,7 +112,6 @@ public class ChasedProjectileAttacker : MonoBehaviour
                 rb.linearVelocity = currentDirection * projectileSpeed;
             }
         }
-        // Đặt biến animation "isMoving" thành true (nếu có)
         if (animator != null)
         {
             animator.SetBool("isMoving", true);
@@ -128,25 +120,18 @@ public class ChasedProjectileAttacker : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Pojectile va chạm với player");
-        // Va chạm với Player (cần đảm bảo Player có Tag "Player")
         if (other.CompareTag("Player") && !isExploding)
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
             if (playerHealth != null)
             {
-                // 1. Gây Sát Thương
-                playerHealth.TakeDamage(damageToPlayer);
-                
-
-                // 2. Tính toán hướng Knockback
-                // Knockback ra khỏi vị trí Projectile
+                playerHealth.TakeDamage(damageToPlayer);         
                 Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
                 playerHealth.ApplyKnockback(knockbackDirection * knockbackForce);
 
             }
 
-            // Dù có gây sát thương hay không, projectile cũng phải nổ khi đụng Player
             StartExplosion();
         }
         else if (other.CompareTag("Wall"))
@@ -162,18 +147,16 @@ public class ChasedProjectileAttacker : MonoBehaviour
         if (isExploding) return;
 
         isExploding = true;
-        // Ngừng di chuyển
+        
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
         }
-        // Tắt Collider để không va chạm nữa
         if (projectileCollider != null)
         {
             projectileCollider.enabled = false;
         }
 
-        // Kích hoạt animation Expode
         if (animator != null)
         {
             if (Time.time - lastExplosionTime >= explosionSoundCooldown)
@@ -192,7 +175,6 @@ public class ChasedProjectileAttacker : MonoBehaviour
             animator.SetBool("isMoving", false);
         }
 
-        // Hủy Projectile sau khi animation Expode kết thúc
         Destroy(gameObject, explosionDuration);
     }
 }

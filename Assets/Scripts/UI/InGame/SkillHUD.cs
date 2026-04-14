@@ -4,16 +4,16 @@ using UnityEngine.UI; // Để dùng Image
 public class SkillHUD : MonoBehaviour
 {
     [Header("References")]
-    public PlayerMagic playerMagic; // Kéo thả Player vào đây
+    public PlayerMagic playerMagic; 
 
     [Header("Skill 1 (Fireball)")]
-    public Image skill1Overlay; // Kéo cái Cooldown_Overlay của Fireball vào
+    public Image skill1Overlay; 
 
     [Header("Skill 2 (Tornado)")]
-    public Image skill2Overlay; // Kéo cái Cooldown_Overlay của Tornado vào
+    public Image skill2Overlay; 
 
     [Header("Skill 3 (Explosion)")]
-    public Image skill3Overlay; // Kéo cái Cooldown_Overlay của Explosion vào
+    public Image skill3Overlay; 
 
     void Update()
     {
@@ -24,7 +24,6 @@ public class SkillHUD : MonoBehaviour
         // Skill 1: Fireball
         if (skill1Overlay != null)
         {
-            // Nếu timer > 0 thì hiển thị tỷ lệ, nếu = 0 thì fillAmount = 0 (trong suốt)
             skill1Overlay.fillAmount = playerMagic.fireballTimer / playerMagic.fireballCooldown;
         }
 

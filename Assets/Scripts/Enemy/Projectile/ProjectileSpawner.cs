@@ -4,14 +4,12 @@ public class ProjectileSpawner : MonoBehaviour
 {
     [Header("Settings")]
     public GameObject projectilePrefab;
-    public Transform firePoint; // Điểm xuất phát của đạn (tạo 1 Empty Object con của Quái)
+    public Transform firePoint; 
 
-    // Hàm này sẽ được gọi từ Animation Event
     public void ShootProjectile()
     {
         if (projectilePrefab == null || firePoint == null) return;
 
-        // Khởi tạo viên đạn
         GameObject projectileObj = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
         StraightProjectile projectileScript = projectileObj.GetComponent<StraightProjectile>();

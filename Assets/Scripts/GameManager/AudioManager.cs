@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
     public void PlayPlaylist(List<AudioClip> playlist)
     {
         if (playlist == null || playlist.Count == 0) return;
-        if (currentPlaylist == playlist && isPlayingPlaylist && activeSource.isPlaying) return; // Thêm check isPlaying cho chắc
+        if (currentPlaylist == playlist && isPlayingPlaylist && activeSource.isPlaying) return; 
 
         currentPlaylist = playlist;
         currentTrackIndex = 0;
@@ -52,14 +52,13 @@ public class AudioManager : MonoBehaviour
         playlistCoroutine = StartCoroutine(PlaylistRoutine());
     }
 
-    // --- [FIX 1] LOGIC KIỂM TRA MỚI ---
     private IEnumerator PlaylistRoutine()
     {
         while (isPlayingPlaylist)
         {
             // Kiểm tra: 
             // 1. Nếu nhạc đang chạy và sắp hết -> Chuyển
-            // 2. Nếu nhạc ĐÃ DỪNG (do lỡ nhịp check) nhưng vẫn đang chế độ Playlist -> Chuyển ngay lập tức
+            // 2. Nếu nhạc ĐÃ DỪNG (do lỡ nhịp check) nhưng vẫn đang chế độ Playlist -> Chuyển
 
             bool shouldSwitch = false;
 
@@ -143,13 +142,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // --- [FIX 2] DÙNG UNSCALED TIME ĐỂ KHÔNG BỊ TREO KHI PAUSE ---
+    // --- DÙNG UNSCALED TIME ĐỂ KHÔNG BỊ TREO KHI PAUSE ---
     private IEnumerator CrossFadeRoutine(AudioSource outSource, AudioSource inSource)
     {
         float timer = 0f;
         while (timer < crossFadeDuration)
         {
-            // Dùng unscaledDeltaTime để nhạc vẫn fade mượt khi  mở menu (TimeScale = 0)
             timer += Time.unscaledDeltaTime;
             float percent = timer / crossFadeDuration;
 
@@ -171,7 +169,7 @@ public class AudioManager : MonoBehaviour
         float startVol = source.volume;
         while (source.volume > 0)
         {
-            source.volume -= Time.unscaledDeltaTime; // Fix TimeScale
+            source.volume -= Time.unscaledDeltaTime;
             yield return null;
         }
         source.Stop();

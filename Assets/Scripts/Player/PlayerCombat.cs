@@ -51,21 +51,17 @@ public class PlayerCombat : MonoBehaviour
         damageArea = weaponPivot.GetComponentInChildren<DamageArea>(true);
         if (damageArea != null)
     {
-        // Gán AudioSource (tương tự như cách khắc phục trước)
         damageArea.playerAudioSource = audioSource; 
     }
     }
     private void Update()
     {
-        if (playerHealth.knockbackTimer > 0) // <--- KIỂM TRA QUAN TRỌNG
+        if (playerHealth.knockbackTimer > 0) 
         {
-            // [FIX] Nếu đang tấn công mà bị dính đòn (Knockback) -> Hủy tấn công ngay
             if (isAttacking)
             {
                 EndAttack();
             }
-
-            // Player đang bị Knockback, thoát ra không xử lý input tiếp
             return;
         }
 
@@ -77,7 +73,7 @@ public class PlayerCombat : MonoBehaviour
     private void HandleInput()
     {
 
-        // Khi nhấn chuột trái thì chém
+        
         if (Mouse.current.leftButton.wasPressedThisFrame && !isAttacking)
         {
             StartAttack();
@@ -95,7 +91,6 @@ public class PlayerCombat : MonoBehaviour
         {
             playerAnimator.SetBool("isAttacking", true);
             playerAnimator.Play("Player_Attack", 0, 0f);
-            //playerMovement.enabled = false;
         }
        
         isFacingRight = transform.localScale.x > 0;
@@ -194,7 +189,7 @@ public class PlayerCombat : MonoBehaviour
         isAttacking = false;
         timer = 0f;
 
-        // [FIX QUAN TRỌNG] Tắt ngay lập tức hitbox và hiệu ứng khi kết thúc (hoặc bị hủy)
+        //  Tắt ngay lập tức hitbox và hiệu ứng khi kết thúc 
         weaponPivot.GetComponentInChildren<Collider2D>().enabled = false;
         weaponTrail.emitting = false;
 
@@ -204,7 +199,7 @@ public class PlayerCombat : MonoBehaviour
 
         // Đưa kiếm về vị trí và góc Idle
         weaponPivot.localRotation = Quaternion.Euler(0, 0, endAngle);
-        weaponPivot.localPosition = idlePivotPos; // [FIX] Trả vị trí tay về chỗ cũ nếu đang chém dở
+        weaponPivot.localPosition = idlePivotPos; // Trả vị trí tay về chỗ cũ nếu đang chém dở
     }
 
 

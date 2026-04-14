@@ -36,7 +36,7 @@ public class PauseManager : MonoBehaviour
 
         // 1. Kích hoạt Input Action
         pauseAction.Enable();
-        // 2. Đăng ký hàm OnDash vào sự kiện performed (khi phím được nhấn)
+        // 2. Đăng ký hàm OnDash vào sự kiện performed 
         pauseAction.performed += TogglePause;
     }
     private void OnDisable()
@@ -77,13 +77,13 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         pauseMenuPanel.SetActive(false);
-        // 1. Xóa Gem tạm (Hủy chiến lợi phẩm)
+        // 1. Xóa Gem tạm 
         if (MetaProgressionManager.Instance != null)
         {
             MetaProgressionManager.Instance.DiscardRunLoot();
         }
 
-        // 2. Xóa file Save Snapshot (Để không Continue được nữa)
+        // 2. Xóa file Save Snapshot
         if (EssentialsManager.Instance != null)
         {
             EssentialsManager.Instance.ClearRunData();
@@ -114,29 +114,18 @@ public class PauseManager : MonoBehaviour
     // --- Phương thức Dừng Game ---
     public void PauseGame()
     {
-        // 1. Kích hoạt giao diện Menu Pause
        
         pauseMenuPanel.SetActive(true);
-
-        // 2. Dừng thời gian game lại
-        // Time.timeScale = 0; có nghĩa là tốc độ thời gian là 0, mọi thứ sẽ dừng
         Time.timeScale = 0f;
 
-        // 3. Cập nhật trạng thái
         isPaused = true;
     }
 
     // --- Phương thức Tiếp tục Game ---
     public void ResumeGame()
     {
-        // 1. Vô hiệu hóa giao diện Menu Pause
         pauseMenuPanel.SetActive(false);
-
-        // 2. Khôi phục tốc độ thời gian
-        // Time.timeScale = 1; là tốc độ thời gian bình thường
         Time.timeScale = 1f;
-
-        // 3. Cập nhật trạng thái
         isPaused = false;
     }
 
@@ -149,10 +138,9 @@ public class PauseManager : MonoBehaviour
     }
 
 
-    // --- Phương thức Thoát Game (Giống trong MainMenu) ---
+    // --- Phương thức Thoát Game  ---
     public void QuitGame()
     {
-        //EssentialsManager.Instance.SaveRunData();
         Debug.Log("Game Quit!");
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -165,11 +153,5 @@ public class PauseManager : MonoBehaviour
         optionsPanel.SetActive(true);
     }
 
-    // --- Phương thức Khởi động lại Scene hiện tại ---
-    //public void RestartGame()
-    //{
-    //    // Khôi phục thời gian và load lại scene hiện tại
-    //    Time.timeScale = 1f;
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    //}
+
 }

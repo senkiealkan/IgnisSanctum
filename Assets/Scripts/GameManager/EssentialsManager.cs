@@ -90,7 +90,7 @@ public class EssentialsManager : MonoBehaviour
                 // Case 3: Chuyển Arena (Đi qua cổng) -> KHÔNG dùng Save cũ (Reset về Wave 0 của Arena mới)
                 if (waveMgr != null)
                 {
-                    StartCoroutine(WaitAndStartWave(waveMgr, false)); // <--- Truyền FALSE
+                    StartCoroutine(WaitAndStartWave(waveMgr, false));
                 }
             }
         }
@@ -124,7 +124,6 @@ public class EssentialsManager : MonoBehaviour
                 health.Revive();
                 health.transform.position = Vector3.zero;
             }
-           // player.transform.position = Vector3.zero ;
             // 3. Reset Mana & Inventory
             PlayerMana mana = player.GetComponent<PlayerMana>();
             if (mana != null) mana.ResetMana();
@@ -141,7 +140,6 @@ public class EssentialsManager : MonoBehaviour
        
         // Xóa file save cũ để tránh xung đột
         ClearRunData();
-        // Sau khi reset xong xuôi, mới bảo WaveManager chạy
         WaveManager waveMgr = FindAnyObjectByType<WaveManager>();
         if (waveMgr != null) waveMgr.InitializeWave(false);
     }
@@ -150,8 +148,7 @@ public class EssentialsManager : MonoBehaviour
     private IEnumerator LoadSavedGameProcess()
     {
         yield return null;
-        LoadRunData(); // Gọi hàm load chi tiết
-        Debug.Log("--- LOAD GAME THÀNH CÔNG ---");
+        LoadRunData(); 
         // Load xong hết chỉ số rồi mới cho quái ra
         WaveManager waveMgr = FindAnyObjectByType<WaveManager>();
         if (waveMgr != null) waveMgr.InitializeWave(true);
@@ -213,7 +210,7 @@ public class EssentialsManager : MonoBehaviour
         if (player != null)
         {
             PlayerStats stats = player.GetComponent<PlayerStats>();
-            if (stats != null) stats.LoadRunStats(); // Load Card Stats trước
+            if (stats != null) stats.LoadRunStats(); 
 
             PlayerHealth health = player.GetComponent<PlayerHealth>();
             if (health != null)
@@ -258,7 +255,6 @@ public class EssentialsManager : MonoBehaviour
     public void ClearRunData()
     {
         PlayerPrefs.DeleteKey("Run_HasSave");
-        // Xóa các key khác nếu cần...
         PlayerPrefs.Save();
     }
 }

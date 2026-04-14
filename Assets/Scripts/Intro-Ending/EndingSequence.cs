@@ -13,18 +13,18 @@ public class EndingSequence : MonoBehaviour
     public float textStayDuration = 3.0f;
 
     [Header("2. Title & Credits Settings")]
-    public CanvasGroup gameTitleCG;   // Kéo GameTitle vào đây
-    public CanvasGroup creditsCG;     // Kéo CreditsPanel vào đây
+    public CanvasGroup gameTitleCG;   
+    public CanvasGroup creditsCG;     
     public float elementFadeDuration = 2.0f; // Thời gian hiện Title/Credits
     public float elementStayDuration = 4.0f; // Thời gian giữ Title/Credits
 
     [Header("3. Button & Music Settings")]
-    public CanvasGroup buttonCG;      // Kéo MenuButton vào đây
-    public Button returnButton;       // Kéo component Button vào đây
-    public AudioSource musicSource;   // Kéo AudioSource nhạc nền vào
+    public CanvasGroup buttonCG;      
+    public Button returnButton;       
+    public AudioSource musicSource;   
     public string menuSceneName = "MainMenu";
 
-    private bool hasClickedButton = false; // Biến kiểm tra xem đã bấm nút chưa
+    private bool hasClickedButton = false; 
 
     void Start()
     {
@@ -36,7 +36,6 @@ public class EndingSequence : MonoBehaviour
         buttonCG.interactable = false;
         buttonCG.blocksRaycasts = false;
 
-        // Gán hàm cho nút bấm
         returnButton.onClick.AddListener(OnReturnClick);
 
         // Bắt đầu chuỗi sự kiện
@@ -46,7 +45,7 @@ public class EndingSequence : MonoBehaviour
     IEnumerator PlayEndingSequence()
     {
         yield return new WaitForSeconds(1f);
-        // === GIAI ĐOẠN 1: CỐT TRUYỆN (Giống Intro) ===
+        // === GIAI ĐOẠN 1: CỐT TRUYỆN ===
         foreach (string line in endingLines)
         {
             storyText.text = line;
@@ -60,11 +59,11 @@ public class EndingSequence : MonoBehaviour
         yield return StartCoroutine(FadeCanvasGroup(gameTitleCG, 0f, 1f, elementFadeDuration));
         yield return new WaitForSeconds(elementStayDuration);
 
-        yield return new WaitForSeconds(0.5f); // Khoảng lặng trang trọng
+        yield return new WaitForSeconds(0.5f);
 
         // === GIAI ĐOẠN 3: HIỆN CREDITS ===
         yield return StartCoroutine(FadeCanvasGroup(creditsCG, 0f, 1f, elementFadeDuration));
-        yield return new WaitForSeconds(elementStayDuration); // Credits ngắn thì hiện một cục rồi tắt luôn
+        yield return new WaitForSeconds(elementStayDuration); 
         yield return StartCoroutine(FadeCanvasGroup(creditsCG, 1f, 0f, elementFadeDuration));
 
         // === GIAI ĐOẠN 4: HIỆN NÚT VỀ MENU ===
@@ -75,18 +74,17 @@ public class EndingSequence : MonoBehaviour
         buttonCG.interactable = true;
         buttonCG.blocksRaycasts = true;
 
-        // === GIAI ĐOẠN 5: CHỜ HẾT NHẠC (AUTO BACK) ===
+        // === GIAI ĐOẠN 5: CHỜ HẾT NHẠC ===
         if (musicSource != null && musicSource.clip != null)
         {
             // Tính thời gian nhạc còn lại
             // (Tổng thời lượng - Thời gian đã phát)
             float remainingTime = musicSource.clip.length - musicSource.time;
 
-            // Nếu nhạc vẫn còn, ta đợi. Nếu nhạc đã hết từ lúc chạy credit thì remainingTime sẽ <= 0 -> chạy luôn.
+  
             if (remainingTime > 0)
             {
-                // Thay vì WaitForSeconds, ta dùng vòng lặp để check từng khung hình
-                // Để nếu người chơi bấm nút thì thoát vòng lặp ngay
+            
                 float timer = 0f;
                 while (timer < remainingTime)
                 {
@@ -119,7 +117,7 @@ public class EndingSequence : MonoBehaviour
     // Hàm sự kiện khi bấm nút
     void OnReturnClick()
     {
-        hasClickedButton = true; // Đánh dấu đã bấm
+        hasClickedButton = true; 
         ReturnToMenu();
     }
 

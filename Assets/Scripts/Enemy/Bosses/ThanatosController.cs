@@ -91,7 +91,7 @@ public class ThanatosController : MonoBehaviour
         if (currentState == ThanatosState.Dead) return;
 
         // Chỉ quay mặt khi đang Idle, Chase hoặc chuẩn bị skill
-        // Khi đang tấn công (Melee/Slash) thì khóa hướng nhìn để đòn đánh có lực
+        // Khi đang tấn công (Melee/Slash) thì khóa hướng nhìn
         if (currentState == ThanatosState.Idle || currentState == ThanatosState.Chase)
         {
             if (playerTarget != null) FlipSprite(playerTarget.position - transform.position);
@@ -139,7 +139,7 @@ public class ThanatosController : MonoBehaviour
         }
     }
 
-    // --- BRAIN (AI) ---
+    // --- BRAIN ---
     private IEnumerator IdleRoutine()
     {
         float waitTime = IsEnraged() ? 0.2f : 0.8f;
@@ -214,10 +214,6 @@ public class ThanatosController : MonoBehaviour
             }
             else
             {
-                // Nếu đã quá gần (< 1.5f) -> Dừng lại để giữ khoảng cách
-                // Boss sẽ đứng nhìn Player một chút thay vì chen lấn
-                //rb.linearVelocity = Vector2.zero;
-                //animator.SetBool("isMoving", false); // Tắt anim chạy cho tự nhiên
                 ChangeState(ThanatosState.MeleeAttack);
                 yield break;
             }
@@ -238,7 +234,6 @@ public class ThanatosController : MonoBehaviour
         // A. Giai đoạn tiếp cận (Positioning)
         // Tìm điểm "Sweet Spot": Là điểm nằm trên đường thẳng nối Boss-Player, cách Player 1 khoảng idealDistance
         Vector2 directionToPlayer = (playerTarget.position - transform.position).normalized;
-        // Vector từ Player ngược lại Boss nhân với khoảng cách lý tưởng
         Vector2 sweetSpot = (Vector2)playerTarget.position - (directionToPlayer * idealDistance);
 
         float dashTimer = 0f;
@@ -252,27 +247,26 @@ public class ThanatosController : MonoBehaviour
             sweetSpot = (Vector2)playerTarget.position - (directionToPlayer * idealDistance);
 
             Vector2 moveDir = (sweetSpot - (Vector2)transform.position).normalized;
-            rb.linearVelocity = moveDir * dashSpeed; // Tốc độ cao
+            rb.linearVelocity = moveDir * dashSpeed; 
 
             dashTimer += Time.deltaTime;
             yield return null;
         }
 
         // B. Giai đoạn tấn công
-        rb.linearVelocity = Vector2.zero; // Phanh gấp
-        //FlipSprite(playerTarget.position - transform.position); // Quay mặt lần cuối cho chuẩn
+        rb.linearVelocity = Vector2.zero; 
 
         animator.SetBool("isMoving", false);
-        animator.SetBool("isAttacking", true); // Trigger animation chém
+        animator.SetBool("isAttacking", true); 
 
-        // Chờ animation kết thúc (giả sử anim dài 1s)
+        // Chờ animation kết thúc 
         yield return new WaitForSeconds(0.4f);
 
         animator.SetBool("isAttacking", false);
         ChangeState(ThanatosState.Idle);
     }
 
-    // 3. TRIỆU HỒI SẤM (TARGET LOCK)
+    // 3. TRIỆU HỒI SẤM
     private IEnumerator SummonThunderRoutine()
     {
         animator.SetBool("isSummoningThunder", true);
@@ -344,7 +338,6 @@ public class ThanatosController : MonoBehaviour
             {
                 GameObject blade = Instantiate(horizontalBladePrefab, spawnPos, Quaternion.identity);
 
-                // --- ĐOẠN QUAN TRỌNG NHẤT ---
                 StraightProjectile projScript = blade.GetComponent<StraightProjectile>();
                 if (projScript != null)
                 {
@@ -371,7 +364,7 @@ public class ThanatosController : MonoBehaviour
         animator.SetBool("isSummoningMinions", true);
         rb.linearVelocity = Vector2.zero;
         float spawnDelay = IsEnraged() ? 0.5f : 1.0f;
-        yield return new WaitForSeconds(1f); // Thời gian gồng
+        yield return new WaitForSeconds(1f); 
 
         CleanUpMinions();
         int amountToSpawn = maxMinions - activeMinions.Count;
@@ -379,12 +372,11 @@ public class ThanatosController : MonoBehaviour
 
         for (int i = 0; i < amountToSpawn; i++)
         {
-            // [FIX] Tìm vị trí hợp lệ thay vì random bừa
+            // Tìm vị trí hợp lệ 
             Vector2? spawnPos = GetValidSummonPosition();
 
             if (spawnPos.HasValue)
             {
-                // Spawn hiệu ứng khói/bụi nếu có (Optional)
                 Instantiate(spawnEffect, spawnPos.Value, Quaternion.identity);
 
                 GameObject minion = Instantiate(minionPrefab, spawnPos.Value, Quaternion.identity);
@@ -411,7 +403,6 @@ public class ThanatosController : MonoBehaviour
             // Dùng OverlapCircle để quét thử 1 vòng tròn to bằng con Minion
             Collider2D hit = Physics2D.OverlapCircle(candidatePos, minionColliderRadius, obstacleLayer);
 
-            // Nếu hit == null nghĩa là không va vào Tường/Obstacle -> Vị trí ngon
             if (hit == null)
             {
                 return candidatePos;
@@ -436,8 +427,6 @@ public class ThanatosController : MonoBehaviour
     private void FlipSprite(Vector2 dir)
     {
         if (Mathf.Abs(dir.x) < 0.5f) return;
-
-        // Logic cũ giữ nguyên
         if (dir.x > 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
         else if (dir.x < 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
 

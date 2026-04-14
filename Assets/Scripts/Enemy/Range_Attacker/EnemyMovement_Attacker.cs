@@ -27,7 +27,6 @@ public class EnemyMovement_Attacker : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //Tạm thời để vậy để test game, test xong find bằng spawner
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -36,7 +35,6 @@ public class EnemyMovement_Attacker : MonoBehaviour
         enemyHealth = gameObject.GetComponent<EnemyHealth>();
         playerTarget = playerObject.transform;
         animator = GetComponent<Animator>();
-        //audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
    
@@ -44,10 +42,8 @@ public class EnemyMovement_Attacker : MonoBehaviour
     void Update()
     {
 
-        // [FIX] Nếu Enemy chết hoặc chưa tìm thấy Player thì không làm gì cả
         if (enemyHealth.isDead || playerTarget == null)
         {
-            // Thử tìm lại Player nếu chưa có (phòng trường hợp Player spawn muộn)
             if (playerTarget == null)
             {
                 GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -69,25 +65,23 @@ public class EnemyMovement_Attacker : MonoBehaviour
         float distanceX = Mathf.Abs(playerTarget.position.x - transform.position.x);
         float distanceY = Mathf.Abs(playerTarget.position.y - transform.position.y);
 
-        // Kiểm tra xem enemy có nằm trong phạm vi (hình chữ nhật) không
         isWithinRange = (distanceX <= attackRangeX && distanceY <= attackRangeY);
 
         if (isWithinRange)
         {
             // ---TRONG PHẠM VI: DỪNG DI CHUYỂN & CHUYỂN SANG TẤN CÔNG ---
             isMoving = false;
-            isAttacking = true; // Kích hoạt trạng thái tấn công
+            isAttacking = true; 
             isAttackInProgress = true;
             rb.linearVelocity = Vector2.zero;
         }
         else
         {
             // --- NGOÀI PHẠM VI: TIẾP TỤC DI CHUYỂN ---
-            isAttacking = false; // Đảm bảo trạng thái tấn công bị tắt
+            isAttacking = false; 
             isMoving = true;
             if (enemyHealth != null && enemyHealth.knockbackTimer <= 0)
-            {
-                //transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
+            {        
                 rb.linearVelocity = direction * moveSpeed;
             }
         }

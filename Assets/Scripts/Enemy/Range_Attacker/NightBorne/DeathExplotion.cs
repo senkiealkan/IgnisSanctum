@@ -34,17 +34,15 @@ public class DeathExplosion : MonoBehaviour
                 PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
-                    // Áp dụng lực đẩy và sát thương như logic bạn yêu cầu
                     playerHealth.ApplyKnockback(knockbackDirection * playerKnockbackForce);
                     playerHealth.TakeDamage(damageToPlayer);
 
-                    Debug.Log("Player bị trúng nổ!");
                 }
             }
         }
     }
 
-    // Vẽ Gizmos để bạn dễ dàng căn chỉnh phạm vi nổ trong cửa sổ Scene
+    // Vẽ Gizmos để dễ dàng căn chỉnh phạm vi nổ trong cửa sổ Scene
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
