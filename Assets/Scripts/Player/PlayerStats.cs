@@ -194,7 +194,7 @@ public class PlayerStats : MonoBehaviour
         PlayerPrefs.SetFloat("Run_FireDamageMult", fireDamageMultiplier_InRun);
         PlayerPrefs.SetFloat("Run_FireCostReduct", fireCostReduction_InRun);
 
-]    }
+    }
 
     public void LoadRunStats()
     {

@@ -293,9 +293,7 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("ARENA CLEARED! OPENING PORTAL...");
             SpawnPortal();
-            if (waveCompletedPanel != null) waveCompletedPanel.SetActive(true);
         }
     }
     private void SpawnPortal()
